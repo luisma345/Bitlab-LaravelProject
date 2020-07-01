@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,4 +39,10 @@ Route::get('objetivo', function () {
 
 Route::get('usuariofinal', function () {
     return 'Personas que están interesadas en conocer las noticias más recientes del mundo tecnológico';
-});
+})->name('Usuario Final');
+
+Route::get('news', [NewsController::class, 'showNews']);
+Route::get('comment/{id}', [NewsController::class, 'showComments'])->where('id', '[0-9]+');
+Route::get('news/{name}', [NewsController::class, 'newsName'])->where('name', '[A-Za-z]+');
+Route::get('newsWriter/{name}', [NewsController::class, 'newsWriter'])->where('name', '[A-Za-z]+');
+Route::post('newsRate/{rate}', [NewsController::class, 'newsRate']);
