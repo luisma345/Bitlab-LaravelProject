@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProjectInfoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,31 +19,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('name', function () {
-    return 'Plataforma Digital de Noticas y Reseñas de Tecnología';
+Route::prefix('project')->name('project.')->group(
+    function(){
+        Route::get('name', [ProjectInfoController::class, 'name'])->name('name');
+        
+        Route::get('creator', [ProjectInfoController::class, 'creator'])->name('creator');
+        
+        Route::get('why', [ProjectInfoController::class, 'why'])->name('why?');
+        
+        Route::get('objective', [ProjectInfoController::class, 'objective'])->name('objective');
+        
+        Route::get('finalUser', [ProjectInfoController::class, 'finalUser'])->name('finalUser');
 });
 
-Route::get('creador', function () {
-    return 'Luis Manuel Bonilla Anaya';
+Route::prefix('news')->name('news.')->group(
+    function(){
+        Route::get('', [NewsController::class, 'showNews'])->name('show');
+        Route::get('comment/{id}', [NewsController::class, 'showComments'])->where('id', '[0-9]+')
+                ->name('commentsByID');
+        Route::get('{name}', [NewsController::class, 'newsName'])->where('name', '[A-Za-z]+')
+                ->name('newsName');
+        Route::get('writer/{name}', [NewsController::class, 'newsWriter'])
+                ->where('name', '[A-Za-z]+')
+                ->name('newsWriter');
+        Route::post('rate/{rate}', [NewsController::class, 'newsRate'])
+                ->name('newsRate');
 });
-
-Route::get('porque', function () {
-    return 'Además que pondré en practica mis conocimientos durante el curso, 
-            me gusta bastante la idea de crear esta plataforma que trate acerca 
-            de la tecnología, un mundo con muchas personas geek interesadas y posibles usuarios de esta';
-});
-
-Route::get('objetivo', function () {
-    return 'Crear un plataforma funciona de diferentes tipos de artículos relacionado al mundo de la tecnología.';
-});
-
-Route::get('usuariofinal', function () {
-    return 'Personas que están interesadas en conocer las noticias más recientes del mundo tecnológico';
-})->name('Usuario Final');
-
-Route::get('news', [NewsController::class, 'showNews']);
-Route::get('comment/{id}', [NewsController::class, 'showComments'])->where('id', '[0-9]+');
-Route::get('news/{name}', [NewsController::class, 'newsName'])->where('name', '[A-Za-z]+');
-Route::get('newsWriter/{name}', [NewsController::class, 'newsWriter'])->where('name', '[A-Za-z]+');
-Route::post('newsRate/{rate}', [NewsController::class, 'newsRate']);
