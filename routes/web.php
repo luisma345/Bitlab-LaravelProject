@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProjectInfoController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('login', function () {
+//         return view('login.login');
+//     });
+Route::resource('login', 'LoginController');
 
 Route::prefix('project')->name('project.')->group(
     function(){
@@ -45,3 +51,5 @@ Route::prefix('news')->name('news.')->group(
         Route::post('rate/{rate}', [NewsController::class, 'newsRate'])
                 ->name('newsRate');
 });
+
+Route::resource('categories', 'CategoryController');
