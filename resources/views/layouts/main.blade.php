@@ -7,11 +7,11 @@
     <title>@yield('title', 'Website') | TECH NEWS</title>
 
     <!-- Icon -->
-    <link rel="shortcut icon" href="img/logo/TechNewsLogo-Brujula.png" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('img/logo/TechNewsLogo-Brujula.png')}}" type="image/png">
     <!-- Tailwind -->
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body class="bg-black">
     @include('partials.navbar.navbar',['menu'=>'main'])

@@ -1,4 +1,4 @@
-@extends('layouts.categories.category')
+@extends('layouts.dashboard.dashboard')
 
 @section('title','Actualizar Categoría')
 

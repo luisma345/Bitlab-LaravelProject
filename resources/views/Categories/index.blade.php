@@ -1,6 +1,9 @@
-@extends('layouts.categories.category')
+@extends('layouts.dashboard.dashboard')
 
 @section('title','Categorías')
+@section('h1','Categorías:')
+
+{{-- @section('option','category') --}}
 
 @section('content-categories')
     <div class="flex justify-center mt-8">

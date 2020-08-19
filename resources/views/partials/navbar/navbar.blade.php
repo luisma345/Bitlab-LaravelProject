@@ -1,7 +1,7 @@
 {{-- NAVBAR --}}
 <div class="flex">
     <div class="bg-white md:flex md:justify-between md:px-2 md:py-1 md:items-center w-screen">
-        <div class="flex items-center justify-between px-2 py-1 md:px-0 md:py-0 md:w-screen">
+        <div class="flex items-center justify-between px-2 py-1 md:px-0 md:py-0 md:w-full">
             <div class="flex items-center justify-center md:justify-start md:ml-2 w-full">
                 <a href="/"><img class="h-12" src="{{ asset('img/logo/TechNewsLogo.png')}}" alt="Logo TECH NEWS"></a>
             </div>
@@ -21,6 +21,15 @@
             </div>
         </div>
             <div id="opciones" class="hidden px-1 pb-1 md:flex md:p-0">
+                @if ($menu=='dashboard')
+                    <a href="{{ route('dashboard') }}" class='block px-2 rounded 
+                    rounded bg-red-800 text-white md:mt-0 md:ml-2'>
+                @else
+                    <a href="{{ route('dashboard') }}" class='block px-2 font-semibold rounded text-black bg-gray-200 
+                    rounded hover:bg-red-800 hover:text-white hover:font-normal md:mt-0 md:ml-2'>
+                @endif
+                    Dashboard
+                </a>
                 @if ($menu=='main')
                 <a href='/' class='block px-2 rounded 
                     rounded bg-red-800 text-white md:mt-0 md:ml-2'>

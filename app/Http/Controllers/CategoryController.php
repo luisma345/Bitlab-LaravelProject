@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::select('id', 'name', 'description')->get();
-        return view('categories.index', compact('categories'));
+        return view('categories.index', ['option'=>'category'], compact('categories'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('Categories.create');
+        return view('Categories.create',['option'=>'category']);
     }
 
     /**
@@ -51,7 +51,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
-        return view('categories.show', compact('category'));
+        return view('categories.show', compact('category'), ['option'=>'category']);
     }
 
     /**
@@ -63,7 +63,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('categories.edit', compact('category'));   
+        return view('categories.edit', compact('category'), ['option'=>'category']);   
     }
 
     /**
