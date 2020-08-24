@@ -4,7 +4,7 @@
 
 @section('h1','Actualizar Categoría:')
 
-@section('content-categories')
+@section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
             <form action="{{ route('categories.update', $category->id) }}" method="POST">

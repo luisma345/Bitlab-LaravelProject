@@ -4,7 +4,7 @@
 
 @section('h1','Nombre de la Categoría: '.$category->name)
 
-@section('content-categories')
+@section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
                 <div class="flex justify-center mb-4">
@@ -12,7 +12,7 @@
                         <div class="flex justify-center">
                             <span for="name" class="font-bold text-white mb-2 underline">Descripción de la categoría:</span><br>
                         </div>
-                        <p name="description"  class="text-white px-4 py-1 border-2 border-black border-solid rounded">
+                        <p class="text-white px-4 py-1 border-2 border-black border-solid rounded">
                             {{$category->description}}
                         </p>
                         <div class="flex justify-center mt-8">

@@ -1,30 +1,31 @@
 @extends('layouts.dashboard.dashboard')
 
-@section('title','Categorías')
-@section('h1','Categorías:')
+@section('title','Noticias')
+@section('h1','Noticias:')
 
 
 @section('content')
     <div class="flex justify-center mt-8">
-        @include('partials.ui.button', ['label' => 'Crear categoría', 'url' => route('categories.create')])
+        @include('partials.ui.button', ['label' => 'Crear Noticia', 'url' => route('news.create')])
     </div>
-    @if (count($categories) == 0)
+    @if (count($news) == 0)
         <div class="flex justify-center mt-8">
             <div class="block">
                 <div class="flex justify-center">
                     <img class="block w-12 text-center" src="img/icons/alert.svg" alt="Alert!">
                 </div>
-                <p class="block text-white text-xl">¡No hay categorías creadas!</p>
+                <p class="block text-white text-xl">¡No hay noticias creadas!</p>
             </div>
         </div>
     @else
-        @foreach($categories as $category)
+        @foreach($news as $item)
             <div class="md:flex md:justify-center p-2">
-                    <a href="{{ route('categories.show', $category->id) }}" 
+                    <a href="{{ route('news.show', $item->id) }}" 
                         class="flex items-center bg-white p-4 w-full md:w-1/2 rounded 
                                 hover:bg-blue-800 hover:text-white">
                         <img src="img/logo/TechNewsLogo-Brujula.png" alt="Tech News Logo" class="w-8 rounded-full">
-                        <span class="font-bold ml-2">Nombre de la categoría: {{ $category->name }} </span>
+                        <span class="font-bold ml-2">Título: {{ $item->title }} </span>
+                        <span class="ml-2">Descrición: {{ $item->description }} </span>
                     </a>
             </div>
         @endforeach

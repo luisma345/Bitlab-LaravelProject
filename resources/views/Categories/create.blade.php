@@ -4,7 +4,7 @@
 
 @section('h1','Crear Categoría:')
 
-@section('content-categories')
+@section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
             <form action="{{ route('categories.store') }}" method="POST">

@@ -17,7 +17,7 @@ class AddFkToNewsTable extends Migration
             'news', 
             function (Blueprint $table) {
                 $table->foreign('category_id')->references('id')->on('categories');
-                $table->foreign('admin_user_id')->references('id')->on('admin_users');
+                $table->foreign('created_by')->references('id')->on('admin_users');
             }
         );
     }
@@ -32,8 +32,8 @@ class AddFkToNewsTable extends Migration
         Schema::table(
             'news', 
             function (Blueprint $table) {
-                $table->dropForeign(['admin_user_id']);
-                $table->dropForeign(['writer_id']);
+                $table->dropForeign(['category_id']);
+                $table->dropForeign(['created_by']);
             }
         );
     }
