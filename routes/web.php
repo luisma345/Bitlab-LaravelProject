@@ -32,3 +32,5 @@ Route::resource('login', 'LoginController');
 Route::resource('categories', 'CategoryController');
 
 Route::resource('news', 'NewsController');
+
+Route::resource('adminUser', 'AdminUserController');

@@ -38,6 +38,16 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|max:191',
+            'description' => 'required|string',
+            'article' => 'required|string',
+            'publication_date'=>'required|date',
+            'category_id'=>'required|integer',
+        ]);
+
+
+
         Category::findOrFail($request->category_id);
 
         $news = new News($request->only([
