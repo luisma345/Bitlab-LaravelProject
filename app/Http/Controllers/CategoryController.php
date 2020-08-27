@@ -39,7 +39,7 @@ class CategoryController extends Controller
         Category::create($request->all());
 
         // $request->session()->flash('cat_stored', true);
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.show',$request->id);
     }
 
     /**

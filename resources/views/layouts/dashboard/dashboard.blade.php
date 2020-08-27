@@ -41,10 +41,17 @@
                         rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>
                     @endif
                         Categorías</a>
-                    <a href="{{ route('categories.index') }}" class='block mt-2 px-2 font-semibold rounded text-black bg-gray-200 
-                        rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>Usuarios</a>
                     
-                    <a href="{{ route('adminUser.index') }}"
+                    <a href="{{ route('users.index') }}"
+                    @if ( $option =='user')
+                        class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
+                    @else
+                        class='block mt-2 px-2 font-semibold rounded text-black bg-gray-200 
+                        rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>
+                    @endif
+                        Usuarios</a>
+                    
+                    <a href="{{ route('adminUsers.index') }}"
                     @if ( $option =='admins')
                         class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
                     @else

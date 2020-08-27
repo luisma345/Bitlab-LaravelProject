@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\AdminUser;
-use App\Models\Role;
 
-class AdminUserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $adminUsers=AdminUser::select('id', 'user_name', 'email')->get();
-        return view('admin_users.index',['option'=>'admins'], compact('adminUsers'));
+        $users=User::select('id', 'user_name', 'email')->get();
+        return view('users.index',['option'=>'user'], compact('users'));
     }
 
     /**
@@ -26,8 +25,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        $roles = Role::get();
-        return view('admin_users.create',['option'=>'admins'],compact('roles'));
+        return view('users.create',['option'=>'user']);
     }
 
     /**
@@ -38,20 +36,19 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        Role::findOrFail($request->roles_id);
 
-        $adminUsers = new AdminUser($request->only([
+        $users = new User($request->only([
             'user_name',
             'password',
             'email',
             'first_name',
             'last_name',
+            'age',
         ]));
 
-        $adminUsers->roles_id = $request->roles_id;
-        $adminUsers->save();
+        $users->save();
 
-        return redirect()->route('adminUsers.show', $adminUsers->id);
+        return redirect()->route('users.show', $users->id);
     }
 
     /**
@@ -62,8 +59,8 @@ class AdminUserController extends Controller
      */
     public function show($id)
     {
-        $adminUsers = AdminUser::findOrFail($id);
-        return view('admin_users.show', compact('adminUsers'), ['option'=>'admins']);
+        $users = User::findOrFail($id);
+        return view('users.show', compact('users'), ['option'=>'user']);
     }
 
     /**
@@ -74,9 +71,8 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        $adminUsers = AdminUser::findOrFail($id);
-        $roles = Role::get();
-        return view('admin_users.edit', compact(['adminUsers', 'roles']), ['option'=>'admins']); 
+        $users = User::findOrFail($id);
+        return view('users.edit', compact('users'), ['option'=>'user']);
     }
 
     /**
@@ -88,12 +84,11 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Role::findOrFail($request->roles_id);
-        $adminUsers = AdminUser::findOrFail($id);
+        $users = User::findOrFail($id);
 
-        $adminUsers->update($request->all());
+        $users->update($request->all());
 
-        return redirect()->route('adminUsers.show', $adminUsers->id);
+        return redirect()->route('users.show', $users->id);
     }
 
     /**
@@ -104,7 +99,8 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        AdminUser::destroy($id);
-        return redirect()->route('adminUsers.index');
+        User::destroy($id);
+
+        return redirect()->route('users.index');
     }
 }
