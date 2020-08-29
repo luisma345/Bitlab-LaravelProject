@@ -7,4 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     protected $fillable = ['user_name', 'email', 'password', 'first_name', 'last_name', 'age'];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
+

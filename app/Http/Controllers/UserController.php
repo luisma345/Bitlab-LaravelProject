@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create',['option'=>'user']);
+        $roles = Role::get();
+        return view('users.create',['option'=>'user'],compact('roles'));
     }
 
     /**
@@ -45,7 +47,8 @@ class UserController extends Controller
             'last_name',
             'age',
         ]));
-
+        
+        $users->roles_id = $request->roles_id;
         $users->save();
 
         return redirect()->route('users.show', $users->id);
@@ -72,7 +75,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $users = User::findOrFail($id);
-        return view('users.edit', compact('users'), ['option'=>'user']);
+        $roles = Role::get();
+        return view('users.edit', compact(['users','roles']), ['option'=>'user']);
     }
 
     /**
@@ -84,6 +88,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Role::findOrFail($request->roles_id);
         $users = User::findOrFail($id);
 
         $users->update($request->all());

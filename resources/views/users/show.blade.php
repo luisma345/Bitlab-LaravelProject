@@ -28,7 +28,10 @@
                     <p class="text-white"> {{ $users->age }} </p>
             </div>
 
-
+            <div class="flex mb-4">
+                <span class="font-bold text-white mr-2">Rol:</span>
+                    <p class="text-white"> {{ $adminUsers->role->name }} </p>
+            </div>
                         
             <div class="flex justify-center mt-8">
                 @include('partials.ui.blueLinkButton', ['label' => 'Actualizar Usuario', 'url' => route('users.edit', $users->id)])

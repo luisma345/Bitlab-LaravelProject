@@ -33,6 +33,5 @@ Route::resource('categories', 'CategoryController');
 
 Route::resource('news', 'NewsController');
 
-Route::resource('adminUsers', 'AdminUserController');
 
 Route::resource('users', 'UserController');
