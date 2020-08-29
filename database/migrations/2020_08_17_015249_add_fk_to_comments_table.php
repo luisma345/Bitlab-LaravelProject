@@ -17,6 +17,7 @@ class AddFkToCommentsTable extends Migration
             'comments',
             function (Blueprint $table) {
                 $table->foreign('news_id')->references('id')->on('news');
+                $table->foreign('made_by')->references('id')->on('users');
             }
         );
     }
@@ -32,6 +33,7 @@ class AddFkToCommentsTable extends Migration
             'comments', 
             function (Blueprint $table) {
                 $table->dropForeign(['news_id']);
+                $table->dropForeign(['made_by']);
             }
         );
     }

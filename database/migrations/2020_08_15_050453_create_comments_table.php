@@ -18,8 +18,9 @@ class CreateCommentsTable extends Migration
             function (Blueprint $table) {
                 $table->id();
                 $table->text('content');
+                $table->dateTime('date')->index();
                 $table->unsignedBigInteger('made_by')->index();
-                $table->unsignedBigInteger('news_id');
+                $table->unsignedBigInteger('news_id')->index();
                 $table->timestamps();
             }
         );

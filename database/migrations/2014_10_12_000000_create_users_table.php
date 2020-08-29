@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
                 $table->string('first_name');
                 $table->string('last_name');
                 $table->unsignedTinyInteger('age');
+                $table->unsignedBigInteger('role_id')->index();
                 $table->rememberToken();
                 $table->timestamps();
             }
