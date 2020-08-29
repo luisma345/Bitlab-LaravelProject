@@ -48,7 +48,7 @@ class UserController extends Controller
             'age',
         ]));
         
-        $users->roles_id = $request->roles_id;
+        $users->role_id = $request->role_id;
         $users->save();
 
         return redirect()->route('users.show', $users->id);
