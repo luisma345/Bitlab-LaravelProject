@@ -9,6 +9,13 @@
         <div class="block">
                 <div class="flex justify-center mb-4">
                     <div class="block">
+                        @if (!is_null($category->image))
+                            <div class="flex justify-center mb-4">
+                                <div class="bg-white p-2 rounded-full">
+                                    <img src="{{ asset("storage/categories-icon/{$category->image}")}}" alt="" class="w-8 rounded-full">
+                                </div>
+                            </div>
+                        @endif
                         <div class="flex justify-center">
                             <span for="name" class="font-bold text-white mb-2 underline">Descripción de la categoría:</span><br>
                         </div>

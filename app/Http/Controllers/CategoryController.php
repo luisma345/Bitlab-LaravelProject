@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::select('id', 'name', 'description')->get();
+        $categories = Category::select('id', 'name', 'description', 'image')->get();
         return view('categories.index', ['option'=>'category'], compact('categories'));
     }
 
@@ -36,10 +38,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create($request->all());
+        $category = new Category($request->only(
+            [
+                'name', 'description'
+            ]
+        ));
+
+        $category->image=basename(Storage::put('categories-icon', $request->image));
+
+        $category->save();
+
 
         // $request->session()->flash('cat_stored', true);
-        return redirect()->route('categories.show',$request->id);
+        return redirect()->route('categories.show', $category->id);
     }
 
     /**
@@ -76,7 +87,16 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
-        $category->update($request->all());
+
+        $category->fill($request->only(
+            [
+                'name', 'description'
+            ]
+        ));
+
+        if ($request->hasFile('image')) {
+            $category->image=basename(Storage::put('categories-icon', $request->image));
+        }
 
         return redirect()->route('categories.show', $category->id);
     }

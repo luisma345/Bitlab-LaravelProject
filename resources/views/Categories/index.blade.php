@@ -23,8 +23,15 @@
                     <a href="{{ route('categories.show', $category->id) }}" 
                         class="flex items-center bg-white p-4 w-full md:w-1/2 rounded 
                                 hover:bg-blue-800 hover:text-white">
-                        <img src="img/logo/TechNewsLogo-Brujula.png" alt="Tech News Logo" class="w-8 rounded-full">
-                        <span class="font-bold ml-2">Nombre de la categoría: {{ $category->name }} </span>
+                        
+                        <img 
+                            @if (!is_null($category->image))
+                                src="{{ asset("storage/categories-icon/{$category->image}")}}"
+                            @else
+                                src="{{ asset('img/logo/TechNewsLogo-Brujula.png') }}"
+                            @endif
+                        alt="Tech News Logo" class="w-8 rounded-full">
+                        <span class="font-bold ml-2"> -> {{ $category->name }} </span>
                     </a>
             </div>
         @endforeach
