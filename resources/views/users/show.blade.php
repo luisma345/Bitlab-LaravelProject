@@ -7,7 +7,13 @@
 @section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
-
+            @if (!is_null($users->image))
+                <div class="flex justify-center mb-4">
+                    <div class="w-24">
+                        <img src="{{ asset("storage/users-profilePicture/{$users->image}")}}" alt="" class="rounded-full">
+                    </div>
+                </div>
+            @endif
             <div class="flex mb-4 w-full">
                 <span class="font-bold text-white mr-2">Nombre:</span>
                     <p class="text-white"> {{ $users->first_name }} </p>

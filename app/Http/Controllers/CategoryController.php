@@ -98,6 +98,8 @@ class CategoryController extends Controller
             $category->image=basename(Storage::put('categories-icon', $request->image));
         }
 
+        $category->save();
+
         return redirect()->route('categories.show', $category->id);
     }
 

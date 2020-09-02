@@ -7,7 +7,7 @@
 @section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
-            <form action="{{ route('categories.update', $category->id) }}" method="POST">
+            <form action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
 

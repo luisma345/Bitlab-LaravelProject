@@ -23,7 +23,13 @@
                     <a href="{{ route('users.show', $user->id) }}" 
                         class="flex items-center bg-white p-4 w-full md:w-1/2 rounded 
                                 hover:bg-blue-800 hover:text-white">
-                        <img src="img/logo/TechNewsLogo-Brujula.png" alt="Tech News Logo" class="w-8 rounded-full">
+                        <img 
+                            @if (!is_null($user->image))
+                                src="{{ asset("storage/users-profilePicture/{$user->image}")}}"
+                            @else
+                                src="{{ asset('img/logo/TechNewsLogo-Brujula.png') }}"
+                            @endif
+                        alt="Tech News Logo" class="w-8 rounded-full">
                         <div class="block">
                             <div class="font-bold ml-2">Username: {{ $user->user_name }} </div>
                             <div class="font-bold ml-2">Correo: {{ $user->email }} </div>

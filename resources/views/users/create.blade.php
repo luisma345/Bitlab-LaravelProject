@@ -7,7 +7,7 @@
 @section('content')
     <div class="flex justify-center mt-8 w-full">
         <div class="block w-full">
-            <form action="{{ route('users.store') }}" method="POST">
+            <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="flex mb-4 w-full">
@@ -85,7 +85,19 @@
 															@endforeach
 												 </select>
 								 </div>
-								 </div>
+                                 </div>
+                    
+
+                    {{-- Foto de Perfil usuario --}}
+                    <div class="flex mb-4 w-full">
+                        <div class="flex justify-end items-center w-5/12">
+                           <label for="last_name" class="font-bold text-white mr-2">Foto de perfil:</label>
+                       </div>
+                       <div class="w-7/12">
+                                <input type="file" name="image" accept="image/*" 
+                                class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 md:w-1/2">
+                       </div>
+                   </div>
                 
                 <div class="flex justify-center">
                     @include('partials.ui.redButton', ['label' => 'Guardar'])

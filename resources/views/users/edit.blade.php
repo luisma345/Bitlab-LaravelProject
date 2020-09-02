@@ -7,9 +7,16 @@
 @section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
-            <form action="{{ route('users.update', $users->id) }}" method="POST">
+            <form action="{{ route('users.update', $users->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
+                @if (!is_null($users->image))
+                <div class="flex justify-center mb-4">
+                    <div class="w-24">
+                        <img src="{{ asset("storage/users-profilePicture/{$users->image}")}}" alt="" class="rounded-full">
+                    </div>
+                </div>
+            @endif
 
               <div class="flex mb-4 w-full">
                      <div class="flex justify-end items-center w-5/12">
@@ -94,6 +101,16 @@
                    </div>
                </div>
 
+                {{-- Foto de Perfil usuario --}}
+                <div class="flex mb-4 w-full">
+                    <div class="flex justify-end items-center w-5/12">
+                       <label for="last_name" class="font-bold text-white mr-2">Foto de perfil:</label>
+                   </div>
+                   <div class="w-7/12">
+                            <input type="file" name="image" accept="image/*" 
+                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-4/5">
+                   </div>
+               </div>
                
                 <div class="flex justify-center">
                     @include('partials.ui.redButton', ['label' => 'Acualizar Categoría'])

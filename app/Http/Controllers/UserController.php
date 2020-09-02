@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -15,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::select('id', 'user_name', 'email')->get();
+        $users=User::select('id', 'user_name', 'email', 'image')->get();
         return view('users.index',['option'=>'user'], compact('users'));
     }
 
@@ -46,6 +47,7 @@ class UserController extends Controller
             'last_name',
             'age',
         ]));
+        $users->image=basename(Storage::put('users-profilePicture', $request->image));
         
         $users->role_id = $request->role_id;
         $users->save();
@@ -101,6 +103,11 @@ class UserController extends Controller
         if (!is_null($request->password)) {
             $users->password=$request->password;
         }
+
+        if ($request->hasFile('image')) {
+            $users->image=basename(Storage::put('users-profilePicture', $request->image));
+        }
+
         $users->role_id = $request->role_id;
         $users->save();
 
