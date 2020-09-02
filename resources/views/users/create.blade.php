@@ -73,11 +73,11 @@
 								<div class="flex mb-4 w-full">
 									<div class="flex justify-end items-center w-5/12">
 											<div>
-													<label for="roles_id" class="font-bold text-white mr-2">Rol:</label>
+													<label for="role_id" class="font-bold text-white mr-2">Rol:</label>
 											</div>
 								 </div>
 								 <div class="flex items-center w-7/12">
-												 <select type="text" name="roles_id" 
+												 <select type="text" name="role_id" 
 													class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold">
 															<option value="">Seleccione una opción</option>
 															@foreach ($roles as $role)

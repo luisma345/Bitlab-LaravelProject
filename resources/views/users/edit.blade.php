@@ -84,11 +84,11 @@
                         </div>
                    </div>
                    <div class="flex items-center w-7/12">
-                           <select type="text" name="roles_id" 
+                           <select type="text" name="role_id" 
                             class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold">
                                 <option value="">Seleccione una opción</option>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}" {{ $adminUsers->roles_id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+                                    <option value="{{ $role->id }}" {{ $users->role_id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
                                 @endforeach
                            </select>
                    </div>

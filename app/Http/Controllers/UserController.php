@@ -38,7 +38,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         $users = new User($request->only([
             'user_name',
             'password',
@@ -88,10 +87,23 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Role::findOrFail($request->roles_id);
+        Role::findOrFail($request->role_id);
+
         $users = User::findOrFail($id);
 
-        $users->update($request->all());
+        $users->fill($request->only([
+            'user_name',
+            'email',
+            'first_name',
+            'last_name',
+            'age',
+        ]));
+        if (!is_null($request->password)) {
+            $users->password=$request->password;
+        }
+        $users->role_id = $request->role_id;
+        $users->save();
+
 
         return redirect()->route('users.show', $users->id);
     }

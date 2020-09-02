@@ -5,7 +5,7 @@
 @section('h1','Título de la Noticia: '.$news->title)
 
 @section('content')
-    <div class="flex justify-center mt-8">
+    <div class="flex justify-center mt-8 pr-4">
         <div class="block">
                 <div class="flex justify-center mb-4">
                     <div class="block">
@@ -29,9 +29,11 @@
                         <div class="flex justify-center">
                             <span class="font-bold text-white mb-2 ">Fecha de Publicación: </span><br>
                         </div>
-                        <p class="text-white px-4 py-1 border-2 border-solid rounded">
-                            {{ $news->publication_date }}
-                        </p>
+                        <div class="flex justify-center">
+                            <div class="text-white px-4 py-1 border-2 border-solid rounded">
+                                {{ $news->publication_date }}
+                            </div>
+                        </div>
                         <br>
 
                         <div class="flex justify-center">
@@ -48,8 +50,8 @@
                             <span class="font-bold text-white mb-2 ">Escritor: </span><br>
                         </div>
                         <div class="flex justify-center">
-                            <a href="{{ route('categories.show', $news->created_by) }}" class="text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
-                                {{ $news->adminUser->user_name }} 
+                            <a href="{{ route('users.show', $news->writer) }}" class="text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
+                                {{ $news->user->user_name }} 
                             </a>
                         </div>
 

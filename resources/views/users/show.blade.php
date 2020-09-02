@@ -30,7 +30,7 @@
 
             <div class="flex mb-4">
                 <span class="font-bold text-white mr-2">Rol:</span>
-                    <p class="text-white"> {{ $adminUsers->role->name }} </p>
+                    <p class="text-white"> {{ $users->role->name }} </p>
             </div>
                         
             <div class="flex justify-center mt-8">

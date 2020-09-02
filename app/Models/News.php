@@ -24,8 +24,8 @@ class News extends Model
         return $this->belongsTo(Category::class);
     }
     
-    public function adminUser()
+    public function user()
     {
-        return $this->belongsTo(AdminUser::class, 'created_by');
+        return $this->belongsTo(User::class, 'writer');
     }
 }
