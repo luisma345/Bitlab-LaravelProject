@@ -22,6 +22,7 @@ class CreateCommentsTable extends Migration
                 $table->unsignedBigInteger('made_by')->index();
                 $table->unsignedBigInteger('news_id')->index();
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

@@ -21,6 +21,7 @@ class CreateReadingHistoriesTable extends Migration
                 $table->unsignedBigInteger('news_id');
                 $table->boolean('liked')->default(false);
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }

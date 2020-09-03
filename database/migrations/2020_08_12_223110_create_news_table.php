@@ -26,6 +26,7 @@ class CreateNewsTable extends Migration
                 $table->unsignedBigInteger('total_comments')->default(0);
                 $table->unsignedBigInteger('writer')->index();
                 $table->timestamps();
+                $table->softDeletes();
             }
         );
     }
