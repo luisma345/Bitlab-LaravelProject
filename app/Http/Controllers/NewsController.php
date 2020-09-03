@@ -57,7 +57,7 @@ class NewsController extends Controller
             'publication_date',
         ]));
 
-        $news->created_by = 1; // auth()->user()->id
+        $news->writer = 1; // auth()->user()->id
         $news->category_id = $request->category_id;
 
         $news->save();
