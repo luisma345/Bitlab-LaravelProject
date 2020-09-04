@@ -27,6 +27,29 @@
                         <br>
 
                         <div class="flex justify-center">
+
+                            {{-- Cantidad de Likes --}}
+                            <div class="flex text-white px-4 py-1 border-2 border-solid rounded mr-4">
+                                <div class="p-1 mr-2">
+                                    <img src="{{ asset('img/icons/heart.svg') }}" alt="Likes-Icon" class="w-8 h-8">
+                                </div>
+                                <div class="flex items-center">
+                                    {{ $news->reading_histories_count }} 
+                                </div>
+                            </div>
+                            {{-- Cantidad de Comentarios --}}
+                            <div class="flex text-white px-4 py-1 border-2 border-solid rounded">
+                                <div class="p-1 rounded-full mr-2">
+                                    <img src="{{ asset('img/icons/comment.svg') }}" alt="Comments-Icon" class="w-8 h-8">
+                                </div>
+                                <div class="flex items-center">
+                                    {{ $news->comments_count }} 
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="flex justify-center">
                             <span class="font-bold text-white mb-2 ">Fecha de Publicación: </span><br>
                         </div>
                         <div class="flex justify-center">
@@ -68,6 +91,9 @@
                                 </div>
                             </a>
                         </div>
+                        <br>
+
+                        
 
                         <div class="flex justify-center mt-8">
                             @include('partials.ui.blueLinkButton', ['label' => 'Editar Noticia', 'url' => route('news.edit', $news->id)])
@@ -80,9 +106,21 @@
                                 @include('partials.ui.redButton', ['label' => 'Eliminar Noticia'])
                             </form>
                         </div>
+
                         <div class="flex justify-center mt-4">
                             <a href="{{ route('news.index') }}" class="text-white hover:text-red-800 underline">← Regresar</a>
                         </div>
+                        <br>
+
+                        <div class="flex justify-center">
+                            <h3 class="font-bold text-white mb-2 text-2xl">Comentarios: </h3><br>
+                        </div>
+                        @foreach ($news->comments as $comment)
+                            <div class="text-white text-center p-4 mb-8 border-2 border-solid rounded">
+                                {{ $comment->content }}<br>
+                                Comentario por: <a href="{{ route('users.show', $comment->made_by ) }}" class="hover:text-red-800 underline hover:font-bold">{{ $comment->user->user_name }}</a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
         </div>

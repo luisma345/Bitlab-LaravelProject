@@ -65,6 +65,9 @@ class UserController extends Controller
     {
         $users = User::findOrFail($id);
         return view('users.show', compact('users'), ['option'=>'user']);
+
+        // $users = User::where('id',1)->findOrFail($id);
+        // return view('users.profile', compact('users'), ['option'=>'profile']);
     }
 
     /**

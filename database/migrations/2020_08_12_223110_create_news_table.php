@@ -23,8 +23,6 @@ class CreateNewsTable extends Migration
                 $table->text('article');
                 $table->dateTime('publication_date')->nullable()->index();
                 $table->unsignedBigInteger('category_id');
-                $table->unsignedBigInteger('total_likes')->default(0);
-                $table->unsignedBigInteger('total_comments')->default(0);
                 $table->unsignedBigInteger('writer')->index();
                 $table->timestamps();
                 $table->softDeletes();

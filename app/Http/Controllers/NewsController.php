@@ -73,7 +73,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $news = News::findOrFail($id);
+        $news = News::withCount('comments','readingHistories')
+                        ->findOrFail($id);
         return view('news.show', compact('news'), ['option'=>'news']);
     }
 
