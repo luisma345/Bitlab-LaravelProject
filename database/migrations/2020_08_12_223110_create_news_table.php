@@ -18,6 +18,7 @@ class CreateNewsTable extends Migration
             function (Blueprint $table) {
                 $table->id();
                 $table->string('title')->index();
+                $table->string('slug');
                 $table->text('description');
                 $table->text('article');
                 $table->dateTime('publication_date')->nullable()->index();

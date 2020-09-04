@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
+    use HasSlug;
     /**
      * The table associated with the model.
      *
@@ -27,5 +30,16 @@ class News extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'writer');
+    }
+
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 }
