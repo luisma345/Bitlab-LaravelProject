@@ -40,8 +40,15 @@
                             <span class="font-bold text-white mb-2 ">Categoría: </span><br>
                         </div>
                         <div class="flex justify-center">
-                            <a href="{{ route('categories.show', $news->category_id) }}" class="text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
-                                {{ $news->category->name }} 
+                            <a href="{{ route('categories.show', $news->category_id) }}" class="flex text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
+                                @if (!is_null($news->category->image))
+                                    <div class="bg-white p-2 mr-2 rounded-full">
+                                        <img src="{{ asset("storage/categories-icon/{$news->category->image}")}}" alt="" class="w-4 rounded-full bg-white">
+                                    </div>
+                                @endif
+                                <div class="flex items-center">
+                                    {{$news->category->name}}
+                                </div>
                             </a>
                         </div>
                         <br>
@@ -50,8 +57,15 @@
                             <span class="font-bold text-white mb-2 ">Escritor: </span><br>
                         </div>
                         <div class="flex justify-center">
-                            <a href="{{ route('users.show', $news->writer) }}" class="text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
-                                {{ $news->user->user_name }} 
+                            <a href="{{ route('users.show', $news->writer) }}" class="flex text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
+                                @if (!is_null($news->user->image))
+                                    <div class="mr-2">
+                                        <img src="{{ asset("storage/users-profilePicture/{$news->user->image}")}}" alt="" class="w-8 rounded-full bg-white">
+                                    </div>
+                                @endif
+                                <div class="flex items-center">
+                                    {{ $news->user->user_name }} 
+                                </div>
                             </a>
                         </div>
 
