@@ -113,7 +113,7 @@
                </div>
                
                 <div class="flex justify-center">
-                    @include('partials.ui.redButton', ['label' => 'Acualizar Categoría'])
+                    @include('partials.ui.redButton', ['label' => 'Acualizar Usuario'])
                 </div>
             </form>
             <div class="flex justify-center mt-4">

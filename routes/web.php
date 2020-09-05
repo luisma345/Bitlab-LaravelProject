@@ -39,7 +39,7 @@ Route::prefix('admin')->name('admin.')->group(
         Route::prefix('categories')->name('categories.')->group(
             function(){
                 Route::get('', [CategoryController::class, 'index'])->name('index');
-                Route::view('create', [CategoryController::class, 'create'])->name('create');
+                Route::get('create', [CategoryController::class, 'create'])->name('create');
                 Route::post('store', [CategoryController::class, 'store'])->name('store');
         
                 Route::prefix('{category}')->group(
@@ -56,7 +56,7 @@ Route::prefix('admin')->name('admin.')->group(
         Route::prefix('news')->name('news.')->group(
             function(){
                 Route::get('', [NewsController::class, 'index'])->name('index');
-                Route::view('create', [NewsController::class, 'create'])->name('create');
+                Route::get('create', [NewsController::class, 'create'])->name('create');
                 Route::post('store', [NewsController::class, 'store'])->name('store');
                 Route::post('addComent', [NewsController::class, 'addComent'])->name('addComent');
         
@@ -75,7 +75,7 @@ Route::prefix('admin')->name('admin.')->group(
         Route::prefix('users')->name('users.')->group(
             function(){
                 Route::get('', [UserController::class, 'index'])->name('index');
-                Route::view('create', [UserController::class, 'create'])->name('create');
+                Route::get('create', [UserController::class, 'create'])->name('create');
                 Route::post('store', [UserController::class, 'store'])->name('store');
         
                 Route::prefix('{users}')->group(
