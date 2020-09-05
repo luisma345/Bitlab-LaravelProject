@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::select('id', 'name', 'description', 'image')->get();
-        return view('categories.index', ['option'=>'category'], compact('categories'));
+        return view('admin.categories.index', ['option'=>'category'], compact('categories'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('Categories.create',['option'=>'category']);
+        return view('admin.categories.create',['option'=>'category']);
     }
 
     /**
@@ -50,7 +50,7 @@ class CategoryController extends Controller
 
 
         // $request->session()->flash('cat_stored', true);
-        return redirect()->route('categories.show', $category->id);
+        return redirect()->route('admin.categories.show', $category->id);
     }
 
     /**
@@ -62,7 +62,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
-        return view('categories.show', compact('category'), ['option'=>'category']);
+        return view('admin.categories.show', compact('category'), ['option'=>'category']);
     }
 
     /**
@@ -74,7 +74,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('categories.edit', compact('category'), ['option'=>'category']);   
+        return view('admin.categories.edit', compact('category'), ['option'=>'category']);   
     }
 
     /**
@@ -100,7 +100,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect()->route('categories.show', $category->id);
+        return redirect()->route('admin.categories.show', $category->id);
     }
 
     /**
@@ -113,6 +113,6 @@ class CategoryController extends Controller
     {
         Category::destroy($id);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 }

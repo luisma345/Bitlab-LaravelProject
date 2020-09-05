@@ -41,10 +41,10 @@
                 </a>
 
                 @if ($menu=='categories')
-                    <a href="{{ route('categories.index') }}" class='block mt-1 px-2 rounded 
+                    <a href="{{ route('admin.categories.index') }}" class='block mt-1 px-2 rounded 
                     rounded bg-red-800 text-white md:mt-0 md:ml-2'>
                 @else
-                    <a href="{{ route('categories.index') }}" class='block mt-1 px-2 font-semibold rounded text-black bg-gray-200 
+                    <a href="{{ route('admin.categories.index') }}" class='block mt-1 px-2 font-semibold rounded text-black bg-gray-200 
                     rounded hover:bg-red-800 hover:text-white hover:font-normal md:mt-0 md:ml-2'>
                 @endif
                     Categorías

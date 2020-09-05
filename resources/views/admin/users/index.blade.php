@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="flex justify-center mt-8">
-        @include('partials.ui.linkButton', ['label' => 'Crear Usuario', 'url' => route('users.create')])
+        @include('partials.ui.linkButton', ['label' => 'Crear Usuario', 'url' => route('admin.users.create')])
     </div>
     @if (count($users) == 0)
         <div class="flex justify-center mt-8">
@@ -20,7 +20,7 @@
     @else
         @foreach($users as $user)
             <div class="md:flex md:justify-center p-2">
-                    <a href="{{ route('users.show', $user->id) }}" 
+                    <a href="{{ route('admin.users.show', $user->id) }}" 
                         class="flex items-center bg-white p-4 w-full md:w-1/2 rounded 
                                 hover:bg-blue-800 hover:text-white">
                         <img 

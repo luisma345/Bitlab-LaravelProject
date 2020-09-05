@@ -40,10 +40,10 @@
             </div>
                         
             <div class="flex justify-center mt-8">
-                @include('partials.ui.blueLinkButton', ['label' => 'Actualizar Usuario', 'url' => route('users.edit', $users->id)])
+                @include('partials.ui.blueLinkButton', ['label' => 'Actualizar Usuario', 'url' => route('admin.users.edit', $users->id)])
             </div>
             <div class="flex justify-center mt-4">
-                <form action="{{ route('users.destroy', $users->id) }}" 
+                <form action="{{ route('admin.users.destroy', $users->id) }}" 
                 method="POST" class="mb-4" onsubmit="return confirm('¿Realmente quieres eliminar este usuario?');">
                     @csrf
                     @method('DELETE')

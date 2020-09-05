@@ -7,7 +7,7 @@
 @section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
-            <form action="{{ route('categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
 
@@ -53,7 +53,7 @@
                 </div>
             </form>
             <div class="flex justify-center mt-4">
-                <a href="{{ route('categories.show', $category->id) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                <a href="{{ route('admin.categories.show', $category->id) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>

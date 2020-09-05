@@ -29,15 +29,15 @@ Route::get('dashboard', function () {
 //     });
 Route::resource('login', 'LoginController');
 
-Route::resource('categories', 'CategoryController');
 
 Route::prefix('admin/')->name('admin.')->group(
     function () {
         Route::resource('news', 'NewsController');
+        Route::resource('categories', 'CategoryController');
+        Route::resource('users', 'UserController');
     }
 );
 
 
 
 
-Route::resource('users', 'UserController');

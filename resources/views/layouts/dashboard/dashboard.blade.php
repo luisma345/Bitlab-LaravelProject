@@ -33,7 +33,7 @@
                         rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>
                     @endif
                     Noticias</a>
-                        <a href="{{ route('categories.index') }}"
+                        <a href="{{ route('admin.categories.index') }}"
                     @if ( $option =='category')
                         class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
                     @else
@@ -42,7 +42,7 @@
                     @endif
                         Categorías</a>
                     
-                    <a href="{{ route('users.index') }}"
+                    <a href="{{ route('admin.users.index') }}"
                     @if ( $option =='user')
                         class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
                     @else

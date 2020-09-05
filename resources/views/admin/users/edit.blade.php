@@ -7,7 +7,7 @@
 @section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
-            <form action="{{ route('users.update', $users->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.users.update', $users->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
                 @if (!is_null($users->image))
@@ -117,7 +117,7 @@
                 </div>
             </form>
             <div class="flex justify-center mt-4">
-                <a href="{{ route('users.show', $users->id) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                <a href="{{ route('admin.users.show', $users->id) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>

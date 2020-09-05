@@ -23,10 +23,10 @@
                             {{$category->description}}
                         </p>
                         <div class="flex justify-center mt-8">
-                            @include('partials.ui.blueLinkButton', ['label' => 'Actualizar Categoría', 'url' => route('categories.edit', $category->id)])
+                            @include('partials.ui.blueLinkButton', ['label' => 'Actualizar Categoría', 'url' => route('admin.categories.edit', $category->id)])
                         </div>
                         <div class="flex justify-center mt-4">
-                            <form action="{{ route('categories.destroy', $category->id) }}" 
+                            <form action="{{ route('admin.categories.destroy', $category->id) }}" 
                                 method="POST" class="mb-4" onsubmit="return confirm('¿Realmente quieres eliminar esta categoría?');">
                                 @csrf
                                 @method('DELETE')

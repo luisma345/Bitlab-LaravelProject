@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $users=User::select('id', 'user_name', 'email', 'image')->get();
-        return view('users.index',['option'=>'user'], compact('users'));
+        return view('admin.users.index',['option'=>'user'], compact('users'));
     }
 
     /**
@@ -28,7 +28,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::get();
-        return view('users.create',['option'=>'user'],compact('roles'));
+        return view('admin.users.create',['option'=>'user'],compact('roles'));
     }
 
     /**
@@ -52,7 +52,7 @@ class UserController extends Controller
         $users->role_id = $request->role_id;
         $users->save();
 
-        return redirect()->route('users.show', $users->id);
+        return redirect()->route('admin.users.show', $users->id);
     }
 
     /**
@@ -64,10 +64,10 @@ class UserController extends Controller
     public function show($id)
     {
         $users = User::findOrFail($id);
-        return view('users.show', compact('users'), ['option'=>'user']);
+        return view('admin.users.show', compact('users'), ['option'=>'user']);
 
         // $users = User::where('id',1)->findOrFail($id);
-        // return view('users.profile', compact('users'), ['option'=>'profile']);
+        // return view('admin.users.profile', compact('users'), ['option'=>'profile']);
     }
 
     /**
@@ -80,7 +80,7 @@ class UserController extends Controller
     {
         $users = User::findOrFail($id);
         $roles = Role::get();
-        return view('users.edit', compact(['users','roles']), ['option'=>'user']);
+        return view('admin.users.edit', compact(['users','roles']), ['option'=>'user']);
     }
 
     /**
@@ -115,7 +115,7 @@ class UserController extends Controller
         $users->save();
 
 
-        return redirect()->route('users.show', $users->id);
+        return redirect()->route('admin.users.show', $users->id);
     }
 
     /**
@@ -128,6 +128,6 @@ class UserController extends Controller
     {
         User::destroy($id);
 
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 }

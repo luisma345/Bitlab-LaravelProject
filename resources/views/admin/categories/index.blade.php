@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="flex justify-center mt-8">
-        @include('partials.ui.linkButton', ['label' => 'Crear categoría', 'url' => route('categories.create')])
+        @include('partials.ui.linkButton', ['label' => 'Crear categoría', 'url' => route('admin.categories.create')])
     </div>
     @if (count($categories) == 0)
         <div class="flex justify-center mt-8">
@@ -20,7 +20,7 @@
     @else
         @foreach($categories as $category)
             <div class="md:flex md:justify-center p-2">
-                    <a href="{{ route('categories.show', $category->id) }}" 
+                    <a href="{{ route('admin.categories.show', $category->id) }}" 
                         class="flex items-center bg-white p-4 w-full md:w-1/2 rounded 
                                 hover:bg-blue-800 hover:text-white">
                         

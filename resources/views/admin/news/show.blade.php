@@ -63,7 +63,7 @@
                             <span class="font-bold text-white mb-2 ">Categoría: </span><br>
                         </div>
                         <div class="flex justify-center">
-                            <a href="{{ route('categories.show', $news->category_id) }}" class="flex text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
+                            <a href="{{ route('admin.categories.show', $news->category_id) }}" class="flex text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
                                 @if (!is_null($news->category->image))
                                     <div class="bg-white p-2 mr-2 rounded-full">
                                         <img src="{{ asset("storage/categories-icon/{$news->category->image}")}}" alt="" class="w-4 rounded-full bg-white">
@@ -80,7 +80,7 @@
                             <span class="font-bold text-white mb-2 ">Escritor: </span><br>
                         </div>
                         <div class="flex justify-center">
-                            <a href="{{ route('users.show', $news->writer) }}" class="flex text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
+                            <a href="{{ route('admin.users.show', $news->writer) }}" class="flex text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
                                 @if (!is_null($news->user->image))
                                     <div class="mr-2">
                                         <img src="{{ asset("storage/users-profilePicture/{$news->user->image}")}}" alt="" class="w-8 rounded-full bg-white">
@@ -118,7 +118,7 @@
                         @foreach ($news->comments as $comment)
                             <div class="text-white text-center p-4 mb-8 border-2 border-solid rounded">
                                 {{ $comment->content }}<br>
-                                Comentario por: <a href="{{ route('users.show', $comment->made_by ) }}" class="hover:text-red-800 underline hover:font-bold">{{ $comment->user->user_name }}</a>
+                                Comentario por: <a href="{{ route('admin.users.show', $comment->made_by ) }}" class="hover:text-red-800 underline hover:font-bold">{{ $comment->user->user_name }}</a>
                             </div>
                         @endforeach
                     </div>
