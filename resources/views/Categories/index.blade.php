@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="flex justify-center mt-8">
-        @include('partials.ui.button', ['label' => 'Crear categoría', 'url' => route('categories.create')])
+        @include('partials.ui.linkButton', ['label' => 'Crear categoría', 'url' => route('categories.create')])
     </div>
     @if (count($categories) == 0)
         <div class="flex justify-center mt-8">

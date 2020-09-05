@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="flex justify-center mt-8">
-        @include('partials.ui.button', ['label' => 'Crear Noticia', 'url' => route('news.create')])
+        @include('partials.ui.linkButton', ['label' => 'Crear Noticia', 'url' => route('admin.news.create')])
     </div>
     @if (count($news) == 0)
         <div class="flex justify-center mt-8">
@@ -20,10 +20,10 @@
     @else
         @foreach($news as $item)
             <div class="md:flex md:justify-center p-2">
-                    <a href="{{ route('news.show', $item->id) }}" 
+                    <a href="{{ route('admin.news.show', $item->id) }}" 
                         class="flex items-center bg-white p-4 w-full md:w-1/2 rounded 
                                 hover:bg-blue-800 hover:text-white">
-                        <img src="img/logo/TechNewsLogo-Brujula.png" alt="Tech News Logo" class="w-8 rounded-full">
+                    <img src="{{ asset('img/logo/TechNewsLogo-Brujula.png') }}" alt="Tech News Logo" class="w-8 rounded-full">
                         <span class="font-bold ml-2">Título: {{ $item->title }} </span>
                         <span class="ml-2">Descrición: {{ $item->description }} </span>
                     </a>

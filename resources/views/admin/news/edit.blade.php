@@ -7,7 +7,7 @@
 @section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
-            <form action="{{ route('news.update', $news->id) }}" method="POST">
+            <form action="{{ route('admin.news.update', $news->id) }}" method="POST">
             @csrf
             <input type="hidden" name="_method" value="PUT">
 
@@ -68,7 +68,7 @@
                 </div>
             </form>
             <div class="flex justify-center mt-4">
-                <a href="{{ route('news.show', $news->id) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                <a href="{{ route('admin.news.show', $news->id) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>

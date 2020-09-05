@@ -31,7 +31,13 @@ Route::resource('login', 'LoginController');
 
 Route::resource('categories', 'CategoryController');
 
-Route::resource('news', 'NewsController');
+Route::prefix('admin/')->name('admin.')->group(
+    function () {
+        Route::resource('news', 'NewsController');
+    }
+);
+
+
 
 
 Route::resource('users', 'UserController');

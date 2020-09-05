@@ -16,7 +16,7 @@ class NewsController extends Controller
     public function index()
     {
         $news=News::select('id', 'title', 'description')->get();
-        return view('news.index',['option'=>'news'], compact('news'));
+        return view('admin.news.index',['option'=>'news'], compact('news'));
     }
 
     /**
@@ -27,7 +27,7 @@ class NewsController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view('news.create',['option'=>'news'], compact('categories'));
+        return view('admin.news.create',['option'=>'news'], compact('categories'));
     }
 
     /**
@@ -62,7 +62,7 @@ class NewsController extends Controller
 
         $news->save();
 
-        return redirect()->route('news.show', $news->id);
+        return redirect()->route('admin.news.show', $news->id);
     }
 
     /**
@@ -75,7 +75,7 @@ class NewsController extends Controller
     {
         $news = News::withCount('comments','readingHistories')
                         ->findOrFail($id);
-        return view('news.show', compact('news'), ['option'=>'news']);
+        return view('admin.news.show', compact('news'), ['option'=>'news']);
     }
 
     /**
@@ -88,7 +88,7 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
         $categories = Category::get();
-        return view('news.edit', compact(['news', 'categories']), ['option'=>'news']); 
+        return view('admin.news.edit', compact(['news', 'categories']), ['option'=>'news']); 
     }
 
     /**
@@ -102,9 +102,11 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
 
-        $news->update($request->all());
+        $news->fill($request->all());
+        $news->category_id = $request->category_id;
+        $news->save();
 
-        return redirect()->route('news.show', $news->id);
+        return redirect()->route('admin.news.show', $news->id);
     }
 
     /**
@@ -116,6 +118,6 @@ class NewsController extends Controller
     public function destroy($id)
     {
         News::destroy($id);
-        return redirect()->route('news.index');
+        return redirect()->route('admin.news.index');
     }
 }

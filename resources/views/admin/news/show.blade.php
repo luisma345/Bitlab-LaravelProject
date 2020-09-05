@@ -96,10 +96,10 @@
                         
 
                         <div class="flex justify-center mt-8">
-                            @include('partials.ui.blueLinkButton', ['label' => 'Editar Noticia', 'url' => route('news.edit', $news->id)])
+                            @include('partials.ui.blueLinkButton', ['label' => 'Editar Noticia', 'url' => route('admin.news.edit', $news->id)])
                         </div>
                         <div class="flex justify-center mt-4">
-                            <form action="{{ route('news.destroy', $news->id) }}" 
+                            <form action="{{ route('admin.news.destroy', $news->id) }}" 
                                 method="POST" class="mb-4" onsubmit="return confirm('¿Realmente quieres eliminar esta noticia?');">
                                 @csrf
                                 @method('DELETE')
@@ -108,7 +108,7 @@
                         </div>
 
                         <div class="flex justify-center mt-4">
-                            <a href="{{ route('news.index') }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                            <a href="{{ route('admin.news.index') }}" class="text-white hover:text-red-800 underline">← Regresar</a>
                         </div>
                         <br>
 

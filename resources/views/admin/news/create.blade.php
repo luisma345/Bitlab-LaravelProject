@@ -13,7 +13,7 @@
                 </div>
                 <p class="block text-red-800 text-center text-xl">Por favor completa correctamente el formulario</p>
             @endif
-            <form action="{{ route('news.store') }}" method="POST">
+            <form action="{{ route('admin.news.store') }}" method="POST">
                 @csrf
                 <div class="flex justify-center mb-4">
                     <div class="block">
@@ -91,7 +91,7 @@
                 </div>
             </form>
             <div class="flex justify-center mt-4">
-                <a href="{{ route('news.index') }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                <a href="{{ route('admin.news.index') }}" class="text-white hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>

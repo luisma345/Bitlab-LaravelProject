@@ -27,7 +27,7 @@
                     <h1 class="text-2xl text-white text-center">Dashboard</h1>
                     <div class="bg-gray-800 rounded p-4 mt-2">
                         <span class="text-2xl text-white text-center">Gestionar:</span>
-                        <a href="{{ route('news.index') }}"
+                        <a href="{{ route('admin.news.index') }}"
                         @if ( $option =='news')
                             class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
                         @else

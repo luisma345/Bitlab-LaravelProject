@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="flex justify-center mt-8">
-        @include('partials.ui.button', ['label' => 'Crear Usuario', 'url' => route('users.create')])
+        @include('partials.ui.linkButton', ['label' => 'Crear Usuario', 'url' => route('users.create')])
     </div>
     @if (count($users) == 0)
         <div class="flex justify-center mt-8">
