@@ -108,7 +108,8 @@
                         </div>
 
                         <div class="flex justify-center mt-4">
-                            <a href="{{ url()->previous() }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                            <a href="{{ url()->previous() == route('admin.news.edit', $news->id) ? route('admin.news.index') : url()->previous() }}" 
+                                class="text-white hover:text-red-800 underline">← Regresar</a>
                         </div>
                         <br>
 

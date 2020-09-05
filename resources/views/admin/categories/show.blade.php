@@ -34,7 +34,8 @@
                             </form>
                         </div>
                         <div class="flex justify-center mt-4">
-                            <a href="{{ url()->previous() }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                            <a href="{{ url()->previous() == route('admin.categories.edit', $category->id) ? route('admin.categories.index') : url()->previous() }}" 
+                                class="text-white hover:text-red-800 underline">← Regresar</a>
                         </div>
                     </div>
                 </div>
