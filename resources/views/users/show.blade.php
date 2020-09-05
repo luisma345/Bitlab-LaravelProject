@@ -51,7 +51,7 @@
                 </form>
             </div>
             <div class="flex justify-center mt-4">
-                <a href="{{ route('users.index') }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                <a href="{{ url()->previous() }}" class="text-white hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>
