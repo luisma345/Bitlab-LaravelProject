@@ -22,6 +22,15 @@
                         <p class="text-white px-4 py-1 border-2 border-black border-solid rounded">
                             {{$category->description}}
                         </p>
+                        <br>
+
+                        <div class="flex justify-center">
+                            <span for="name" class="text-white mb-2 underline">Cantidad de Noticias:</span><br>
+                        </div>
+                        <p class="text-white text-center px-4 py-1 border-2 border-black border-solid rounded">
+                            {{$category->news_count}}
+                        </p>
+
                         <div class="flex justify-center mt-8">
                             @include('partials.ui.blueLinkButton', ['label' => 'Actualizar Categoría', 'url' => route('admin.categories.edit', $category->id)])
                         </div>

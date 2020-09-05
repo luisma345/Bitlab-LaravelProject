@@ -62,7 +62,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Category::withCount('news')->findOrFail($id);
         return view('admin.categories.show', compact('category'), ['option'=>'category']);
     }
 
