@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -121,4 +122,29 @@ class NewsController extends Controller
         News::destroy($id);
         return redirect()->route('admin.news.index');
     }
+
+    public function addComent(Request $request)
+    {
+        
+            
+        News::findOrFail($request->news_id);
+        
+        // $request->validate([
+        //         'content' => 'required|string',
+        // ]);
+
+        
+
+        $comment = new Comment($request->only([
+            'content',
+        ]));
+
+        $comment->made_by = 1; // auth()->user()->id
+        $comment->news_id = $request->news_id;
+
+        $comment->save();
+
+        return redirect()->route('admin.news.show', $comment->news_id);
+    }
+
 }

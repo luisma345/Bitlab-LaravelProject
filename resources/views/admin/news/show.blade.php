@@ -116,6 +116,27 @@
                         <div class="flex justify-center">
                             <h3 class="font-bold text-white mb-2 text-2xl">Comentarios: </h3><br>
                         </div>
+                        <br>
+
+                        {{-- ADD COMMENTS --}}
+                        <form action="{{ route('admin.news.addComent') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="text" name="news_id" hidden value="{{ $news->id }}">
+                            <div class="flex justify-center mb-4">
+                                <div class="block">
+                                    <div class="flex justify-center">
+                                        <label for="content" class="font-bold text-white mb-2">Agrega un comentario:</label><br>
+                                    </div>
+                                    <textarea name="content" rows="4" cols="75" class="bg-white px-4 py-1 border-2 border-black border-solid rounded" placeholder="Agrega un comentario"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-center">
+                                @include('partials.ui.redButton', ['label' => 'Agregar'])
+                            </div>
+                        </form>
+                        <br>
+                        {{-- SHOW ALL COMMENTS --}}
                         @foreach ($news->comments as $comment)
                             <div class="text-white text-center p-4 mb-8 border-2 border-solid rounded">
                                 {{ $comment->content }}<br>
