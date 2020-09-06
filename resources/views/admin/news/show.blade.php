@@ -31,7 +31,7 @@
                             {{-- Cantidad de Likes --}}
                             <div class="flex text-white px-4 py-1 border-2 border-solid rounded mr-4">
                                 <div class="p-1 mr-2">
-                                    <img src="{{ asset('img/icons/heart.svg') }}" alt="Likes-Icon" class="w-8 h-8">
+                                    <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-8 h-8">
                                 </div>
                                 <div class="flex items-center">
                                     {{ $news->reading_histories_count }} 
