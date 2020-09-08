@@ -7,10 +7,10 @@
 @section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
-            <form action="{{ route('admin.news.update', $news->id) }}" method="POST">
+            <form action="{{ route('admin.news.update', $news->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="_method" value="PUT">
-
+                
                 <div class="flex justify-center mb-4">
                     <div class="block">
                         <div class="flex justify-center">
@@ -63,6 +63,25 @@
                     </div>
                 </div>
                 <br>
+
+                {{-- Image --}}
+                <div class="flex justify-center mb-4">
+                    <div class="block">
+                        <div class="flex justify-center">
+                            <label for="image" class="font-bold text-white">Imagen de Referencia: </label><br>
+                        </div>
+                        @if (!is_null($news->image))
+                            <div class="flex justify-center mb-4">
+                                <div class="p-2">
+                                    <img src="{{ asset("storage/news-images/{$news->image}")}}" alt="" class="h-64 rounded">
+                                </div>
+                            </div>
+                        @endif
+                        <input type="file" name="image" accept="image/*" 
+                                class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2">
+                    </div>
+                </div>
+
                 <div class="flex justify-center">
                     @include('partials.ui.redButton', ['label' => 'Actualizar Noticia'])
                 </div>

@@ -21,16 +21,19 @@
             </div>
         </div>
             <div id="opciones" class="hidden px-1 pb-1 md:flex md:p-0">
-                @if ( true && !Auth::guest())
-                    @if ($menu=='dashboard')
-                        <a href="{{ route('admin.dashboard') }}" class='block px-2 rounded 
-                        rounded bg-red-800 text-white md:mt-0 md:ml-2'>
-                    @else
-                        <a href="{{ route('admin.dashboard') }}" class='block px-2 font-semibold rounded text-black bg-gray-200 
-                        rounded hover:bg-red-800 hover:text-white hover:font-normal md:mt-0 md:ml-2'>
+                @if (!Auth::guest())
+                    @if (auth()->user()->role_id == 3)
+                        @if ($menu=='dashboard')
+                            <a href="{{ route('admin.dashboard') }}" class='block px-2 rounded 
+                            rounded bg-red-800 text-white md:mt-0 md:ml-2'>
+                        @else
+                            <a href="{{ route('admin.dashboard') }}" class='block px-2 font-semibold rounded text-black bg-gray-200 
+                            rounded hover:bg-red-800 hover:text-white hover:font-normal md:mt-0 md:ml-2'>
+                        @endif
+                            Dashboard
+                        </a>
+                        
                     @endif
-                        Dashboard
-                    </a>
                 @endif
                 @if ($menu=='main')
                 <a href='{{ route('/') }}' class='block px-2 rounded 

@@ -7,6 +7,7 @@ use App\Models\News;
 use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -61,6 +62,7 @@ class NewsController extends Controller
 
         $news->writer = 1; // auth()->user()->id
         $news->category_id = $request->category_id;
+        $news->image=basename(Storage::put('news-images', $request->image));
 
         $news->save();
 
@@ -106,6 +108,9 @@ class NewsController extends Controller
 
         $news->fill($request->all());
         $news->category_id = $request->category_id;
+        if ($request->hasFile('image')) {
+            $news->image=basename(Storage::put('news-images', $request->image));
+        }
         $news->save();
 
         return redirect()->route('admin.news.show', $news->id);

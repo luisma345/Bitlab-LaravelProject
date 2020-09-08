@@ -14,17 +14,25 @@
             </div>
         </div>
     @else
-        <div class="flex flex-col md:flex-row flex-wrap">
+        <div class="flex flex-col md:flex-row flex-wrap h-full">
             @foreach($news as $item)
-                <div class="w-full md:w-1/3 p-2">
+                <div class="w-full md:w-1/3 p-2 h-full">
                         <a href="{{ route('admin.news.show', $item->id) }}" 
-                            class="block items-center bg-white p-4 w-full rounded 
+                            class="block items-center bg-white p-4 w-full h-full rounded 
                                     hover:bg-blue-800 hover:text-white">
-                            <div class="flex justify-center w-full">
-                                <img src="{{ asset('img/logo/TechNewsLogo-Brujula.png') }}" alt="Tech News Logo" class="h-64 ">
+                            <div class="flex justify-center mb-2 w-full">
+                                @if (!is_null($item->image))
+                                    <img src="{{ asset("storage/news-images/{$item->image}")}}" alt="" class="w-full h-64 object-cover rounded">
+                                @else
+                                    <img src="{{ asset('img/logo/TechNewsLogo-Brujula.png') }}" alt="Tech News Logo" class="h-64 ">
+                                @endif
                             </div>
-                            <h2 class="font-bold">{{ \Illuminate\Support\Str::limit($item->title, 40)}} </h2><br>
-                            <span class="">Descrición: {{ \Illuminate\Support\Str::limit($item->description, 120) }} </span>
+                            <h2 class="font-bold">{{ \Illuminate\Support\Str::limit($item->title, 40)}} </h2>
+                            <div class="md:h-20">
+                                <p class="mb-2">
+                                    Descripción: {{ \Illuminate\Support\Str::limit($item->description, 110) }}
+                                </p>
+                            </div>
                             <div class="flex font-bold px-4 py-1 border-2 border-solid rounded mr-4 bg-white">
                                 <div class="p-1 mr-1">
                                     <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-4 h-4">

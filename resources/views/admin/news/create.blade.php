@@ -13,7 +13,7 @@
                 </div>
                 <p class="block text-red-800 text-center text-xl">Por favor completa correctamente el formulario</p>
             @endif
-            <form action="{{ route('admin.news.store') }}" method="POST">
+            <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="flex justify-center mb-4">
                     <div class="block">
@@ -86,6 +86,18 @@
                         @enderror
                     </div>
                 </div>
+
+                {{-- Image --}}
+                <div class="flex justify-center mb-4">
+                    <div class="block">
+                        <div class="flex justify-center">
+                            <label for="image" class="font-bold text-white">Imagen de Referencia: </label><br>
+                        </div>
+                        <input type="file" name="image" accept="image/*" 
+                                class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2">
+                    </div>
+                </div>
+
                 <div class="flex justify-center">
                     @include('partials.ui.redButton', ['label' => 'Guardar'])
                 </div>
