@@ -1,12 +1,11 @@
-@extends('layouts.dashboard.adminDashboard')
-
-@section('title','Usuario '.$users->user_name)
-
-@section('h1','Username: '.$users->user_name)
+@extends('layouts.main')
 
 @section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
+            <div class="flex justify-center mb-4 w-full">
+                <h2 class="font-bold text-white text-2xl mr-2">Perfil</h2>
+            </div>
             @if (!is_null($users->image))
                 <div class="flex justify-center mb-4">
                     <div class="w-24">
@@ -14,6 +13,11 @@
                     </div>
                 </div>
             @endif
+            <div class="flex mb-4 w-full">
+                <span class="font-bold text-white mr-2">Nombre de Usuario:</span>
+                    <p class="text-white"> {{ $users->user_name }} </p>
+            </div>
+
             <div class="flex mb-4 w-full">
                 <span class="font-bold text-white mr-2">Nombre:</span>
                     <p class="text-white"> {{ $users->first_name }} </p>
@@ -34,24 +38,18 @@
                     <p class="text-white"> {{ $users->age }} </p>
             </div>
 
-            <div class="flex mb-4">
-                <span class="font-bold text-white mr-2">Rol:</span>
-                    <p class="text-white"> {{ $users->role->name }} </p>
-            </div>
                         
             <div class="flex justify-center mt-8">
-                @include('partials.ui.blueLinkButton', ['label' => 'Actualizar Usuario', 'url' => route('admin.users.edit', $users->id)])
+                @include('partials.ui.blueLinkButton', ['label' => 'Editar Perfil', 'url' => route('admin.users.edit', $users->id)])
             </div>
             <div class="flex justify-center mt-4">
-                <form action="{{ route('admin.users.destroy', $users->id) }}" 
-                method="POST" class="mb-4" onsubmit="return confirm('¿Realmente quieres eliminar este usuario?');">
+                <form action="{{ route('logout') }}" method="POST" class="mb-4">
                     @csrf
-                    @method('DELETE')
-                    @include('partials.ui.redButton', ['label' => 'Eliminar Usuario'])
+                    @include('partials.ui.redButton', ['label' => 'Cerrar Sesión'])
                 </form>
             </div>
             <div class="flex justify-center mt-4">
-                <a href="{{ url()->previous() == route('admin.users.edit', $users->id) ? route('admin.users.index') : url()->previous() }}" 
+                <a href="{{ url()->previous() == 1 ? route('admin.users.index') : url()->previous() }}" 
                     class="text-white hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>

@@ -2,10 +2,14 @@
 
 // use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboarController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectInfoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,22 +23,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
 
-Route::get('dashboard', function () {
-        return view('dashboard.dashboard',['option'=>'dashboard']);
-    })->name('dashboard');
-
-// Route::get('login', function () {
-//         return view('login.login');
-//     });
-// Route::resource('login', 'LoginController');
-
+// Página Principal
+Route::get('/', [HomeController::class, 'index'])->name('/');
+Route::get('home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->name('admin.')->group(
     function () {
+        // DASHBOARD ADMIN
+        Route::get('dashboard', [DashboarController::class, 'index'])->name('dashboard');
+
         //Categories
         Route::prefix('categories')->name('categories.')->group(
             function(){
@@ -91,7 +90,11 @@ Route::prefix('admin')->name('admin.')->group(
     }
 );
 
-
-
+Route::prefix('profile')->name('profile.')->group(
+    function () {
+        //Profile
+        Route::get('{users}', [ProfileController::class, 'show'])->name('show');
+    }
+);
 
 

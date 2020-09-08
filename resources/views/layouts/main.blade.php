@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body class="bg-black">
-    @include('partials.navbar.navbar',['menu'=>'main'])
+    @include('partials.navbar.navbar',['menu'=> $menu])
+
+
+    @yield('content')
 </body>
 </html>
