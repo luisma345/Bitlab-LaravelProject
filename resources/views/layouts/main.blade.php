@@ -12,8 +12,6 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    {{-- ckeditor --}}
-    <script src="{{ asset('/vendors/ckeditor/ckeditor.js') }}"></script>
 </head>
 <body class="bg-black">
     @include('partials.navbar.navbar',['menu'=> $menu])

@@ -19,15 +19,27 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the all the news.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        $news=News::withCount('comments','readingHistories')        
+        $news=News::withCount('comments','readingHistories')
+                ->orderBy('publication_date', 'DESC')        
                 ->get();
 
         return view('home',['menu'=>'main'], compact('news'));
+    }
+
+    /**
+     * Return the about page
+     *
+     * @return void
+     */
+    public function about()
+    {
+
+        return view('about.about-us',['menu'=>'about']);
     }
 }
