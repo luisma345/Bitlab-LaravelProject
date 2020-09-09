@@ -52,6 +52,8 @@ Route::prefix('profile')->name('profile.')->group(
         Route::prefix('{user}')->group(
             function () {
                 Route::get('editFirstTime', [ProfileController::class, 'editFirstTime'])->name('editFirstTime');
+                Route::get('edit', [ProfileController::class, 'edit'])->name('edit');
+                Route::put('', [ProfileController::class, 'update'])->name('update');
             }
         );
     }

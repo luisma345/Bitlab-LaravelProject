@@ -41,14 +41,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $users = new User($request->only([
-            'user_name',
-            'password',
             'email',
             'first_name',
             'last_name',
             'age',
         ]));
-        $users->image=basename(Storage::put('users-profilePicture', $request->image));
+        $users->user_name=strtolower($request->user_name);
+        $users->password=bcrypt($request->password);
+
+        if ($request->hasFile('image')) {
+            $users->image=basename(Storage::put('users-profilePicture', $request->image));
+        }
         
         $users->role_id = $request->role_id;
         $users->save();
@@ -98,14 +101,14 @@ class UserController extends Controller
         $users = User::findOrFail($id);
 
         $users->fill($request->only([
-            'user_name',
             'email',
             'first_name',
             'last_name',
             'age',
         ]));
+        $users->user_name=strtolower($request->user_name);
         if (!is_null($request->password)) {
-            $users->password=$request->password;
+            $users->password=bcrypt($request->password);
         }
 
         if ($request->hasFile('image')) {

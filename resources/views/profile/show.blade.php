@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.dashboard.profileDashboard')
 
 @section('content')
     <div class="flex justify-center mt-8">
@@ -40,17 +40,13 @@
 
                         
             <div class="flex justify-center mt-8">
-                @include('partials.ui.blueLinkButton', ['label' => 'Editar Perfil', 'url' => route('admin.users.edit', $users->id)])
+                @include('partials.ui.blueLinkButton', ['label' => 'Actualizar Perfil', 'url' => route('profile.edit', auth()->user()->id)])
             </div>
             <div class="flex justify-center mt-4">
                 <form action="{{ route('logout') }}" method="POST" class="mb-4">
                     @csrf
                     @include('partials.ui.redButton', ['label' => 'Cerrar Sesión'])
                 </form>
-            </div>
-            <div class="flex justify-center mt-4">
-                <a href="{{ url()->previous() == 1 ? route('admin.users.index') : url()->previous() }}" 
-                    class="text-white hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>

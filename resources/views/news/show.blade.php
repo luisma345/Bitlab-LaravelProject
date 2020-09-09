@@ -78,13 +78,17 @@
                             <div class="flex items-center text-white font-medium">
                                 Escritor:
                             </div>
-                            <a href="{{ route('admin.users.show', $news->writer) }}" class="flex text-white px-2 py-1 hover:text-red-800 underline">
+                            @if (!Auth::guest() && auth()->user()->role_id == 3)
+                                <a href="{{ route('admin.users.show', $news->writer) }}" class="flex text-white px-2 py-1 hover:text-red-800 underline">
+                            @else
+                                <a class="flex text-white px-2 py-1">
+                            @endif
                                 <div class="flex items-center">
                                     {{ $news->user->user_name }} 
                                 </div>
                                 @if (!is_null($news->user->image))
                                     <div class="w-8 mx-2">
-                                        <img src="{{ asset("storage/users-profilePicture/{$news->user->image}")}}" alt="" class="h-8 w-full object-cover rounded-full rounded-full bg-white">
+                                        <img src="{{ asset("storage/users-profilePicture/{$news->user->image}")}}" alt="" class="w-8 h-full object-full rounded-full bg-white">
                                     </div>
                                 @endif
                             </a>
@@ -109,8 +113,14 @@
                             <div class="block w-10/12">
                                 @foreach ($news->comments as $comment)
                                     <div class="text-white text-center p-4 mb-8 border-2 border-solid rounded">
-                                        {{ $comment->content }}<br>
-                                        Comentario por: <a href="{{ route('admin.users.show', $comment->made_by ) }}" class="hover:text-red-800 underline hover:font-bold">{{ $comment->user->user_name }}</a>
+                                        <p class="text-xl">{{ $comment->content }}</p>
+                                        <span class="text-sm mt-2">Comentario por: 
+                                            @if (!Auth::guest() && auth()->user()->role_id == 3)
+                                                <a href="{{ route('admin.users.show', $comment->made_by ) }}" class="hover:text-red-800 underline hover:font-bold">{{ $comment->user->user_name }}</a>
+                                            @else
+                                                {{ $comment->user->user_name }}
+                                            @endif
+                                        </span>
                                     </div>
                                 @endforeach
                             </div>
@@ -143,7 +153,7 @@
                             </form>
                         @else
                             <div class="flex justify-center">
-                                <div class="block p-4 rounded">
+                                <div class="block p-4 rounded border border-white border-2">
                                     <div class="flex justify-center">
                                         <img class="block w-8 text-center" src="{{ asset('img/icons/alert.svg')}}" alt="Alert!">
                                     </div>

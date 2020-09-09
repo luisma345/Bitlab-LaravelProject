@@ -28,7 +28,11 @@
                 </a>
             </div>
         </div>
-
+        <br>
+        <div class="flex justify-center mt-4">
+            <a href="{{ url()->previous() }}" 
+                class="text-white hover:text-red-800 underline">← Regresar</a>
+        </div>
     </div>
 
 </div>
