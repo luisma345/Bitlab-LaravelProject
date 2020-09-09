@@ -15,6 +15,8 @@
     {{-- flatpickr --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    {{-- ckeditor --}}
+    <script src="{{ asset('/vendor/ckeditor/ckeditor.js') }}"></script>
 </head>
 <body class="bg-black">
     @include('partials.navbar.navbar',['menu'=>'dashboard'])
@@ -65,6 +67,10 @@
     </div>
     <script>
         flatpickr("#publication_date", { enableTime: true, minDate: 'today' });
+
+        CKEDITOR.config.height=400;
+        CKEDITOR.config.width='auto';
+       
       </script>
 </body>
 </html>

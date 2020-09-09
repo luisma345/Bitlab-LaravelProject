@@ -8,7 +8,7 @@
         <div class="flex justify-center mt-8">
             <div class="block">
                 <div class="flex justify-center">
-                    <img class="block w-12 text-center" src="img/icons/alert.svg" alt="Alert!">
+                    <img class="block w-12 text-center" src="{{ asset('img/icons/alert.svg')}}" alt="Alert!">
                 </div>
                 <p class="block text-white text-xl">¡No hay noticias disponibles!</p>
             </div>
@@ -17,7 +17,7 @@
         <div class="flex flex-col md:flex-row flex-wrap h-full">
             @foreach($news as $item)
                 <div class="w-full md:w-1/3 p-2 h-full">
-                        <a href="{{ route('admin.news.show', $item->id) }}" 
+                        <a href="{{ route('news.show', $item->id) }}" 
                             class="block items-center bg-white p-4 w-full h-full rounded 
                                     hover:bg-blue-800 hover:text-white">
                             <div class="flex justify-center mb-2 w-full">
@@ -51,8 +51,8 @@
                                     <div class="flex items-center">
                                         {{ $item->user->user_name }} 
                                         @if (!is_null($item->user->image))
-                                            <div class="mr-2">
-                                                <img src="{{ asset("storage/users-profilePicture/{$item->user->image}")}}" alt="" class="w-4 rounded-full bg-white">
+                                            <div class="w-6 ml-1">
+                                                <img src="{{ asset("storage/users-profilePicture/{$item->user->image}")}}" alt="" class="h-6 w-full object-cover rounded-full bg-white">
                                             </div>
                                         @endif
                                     </div>

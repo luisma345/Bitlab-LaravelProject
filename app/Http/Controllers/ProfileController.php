@@ -17,8 +17,18 @@ class ProfileController extends Controller
     {
         $users= User::findOrFail($id);
         return view('profile.show', compact('users'), ['menu'=>'profile']);
-
-        // $users = User::where('id',1)->findOrFail($id);
-        // return view('admin.users.profile', compact('users'), ['option'=>'profile']);
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editFirstTime($user_name)
+    {
+        $users = User::findOrFail('user_name', $user_name);
+        // $users= User::findOrFail($id);
+        dd($users);
+        return view('profile.editFirstTime', compact('users'));
     }
 }

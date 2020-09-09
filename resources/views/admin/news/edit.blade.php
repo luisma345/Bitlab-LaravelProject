@@ -30,11 +30,11 @@
                     </div>
                 </div>
                 <div class="flex justify-center mb-4">
-                    <div class="block">
+                    <div class="block w-full">
                         <div class="flex justify-center">
                             <label for="article" class="font-bold text-white mb-2">Artículo:</label><br>
                         </div>
-                        <textarea name="article" rows="25" cols="75" class="bg-white px-4 py-1 border-2 border-black border-solid rounded"
+                        <textarea name="article" rows="25" cols="75" class="ckeditor"
                         >{{ $news->article }}</textarea>
                     </div>
                 </div>
@@ -76,6 +76,16 @@
                                     <img src="{{ asset("storage/news-images/{$news->image}")}}" alt="" class="h-64 rounded">
                                 </div>
                             </div>
+                        @else
+                            <div class="flex justify-center mt-4 mb-4">
+                                <div class="block">
+                                    <div class="flex justify-center">
+                                    <img class="block w-12 text-center" src="{{ asset('img/icons/alert.svg') }}" alt="Alert!">
+                                    </div>
+                                    <p class="block text-white text-sm">¡No hay imagen de referencia para la noticia!</p>
+                                </div>
+                            </div>
+                            
                         @endif
                         <input type="file" name="image" accept="image/*" 
                                 class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2">

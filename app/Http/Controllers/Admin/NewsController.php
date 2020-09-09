@@ -18,7 +18,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news=News::select('id', 'title', 'description')->get();
+        $news=News::withCount('comments','readingHistories')        
+            ->orderBy('publication_date', 'DESC')
+            ->get();
         return view('admin.news.index',['option'=>'news'], compact('news'));
     }
 
@@ -144,7 +146,7 @@ class NewsController extends Controller
             'content',
         ]));
 
-        $comment->made_by = 1; // auth()->user()->id
+        $comment->made_by = auth()->user()->id;
         $comment->news_id = $request->news_id;
 
         $comment->save();

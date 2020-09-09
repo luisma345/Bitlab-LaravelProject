@@ -6,23 +6,23 @@
 
 @section('content')
     <div class="flex justify-center mt-8">
-        <div class="block">
+        <div class="block w-10/12">
             @if ($errors->any())
                 <div class="flex justify-center">
                     <img class="block w-12 text-center" src="{{ asset('img/icons/alert.svg') }}" alt="Alert!">
                 </div>
                 <p class="block text-red-800 text-center text-xl">Por favor completa correctamente el formulario</p>
             @endif
-            <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data" class="w-full">
                 @csrf
                 <div class="flex justify-center mb-4">
-                    <div class="block">
+                    <div class="block w-10/12">
                         <div class="flex justify-center">
                             <label for="title" class="font-bold text-white">Título de la noticia:</label><br>
                         </div>
                         <div class="flex justify-center">
                             <input type="text" name="title" value="{{ old('title')}}"
-                                class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2">
+                                class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-full">
                         </div>
                         @error('title')
                             <div class="text-red-800 text-center">{{ $message }}</div>
@@ -34,20 +34,21 @@
                         <div class="flex justify-center">
                             <label for="description" class="font-bold text-white mb-2">Descripción de la noticia:</label><br>
                         </div>
-                        <textarea name="description" rows="4" cols="75" value="{{ old('description')}}"
-                        class="bg-white px-4 py-1 border-2 border-black border-solid rounded"></textarea>
+                        <textarea name="description" rows="4" cols="75"
+                        class="bg-white px-4 py-1 border-2 border-black border-solid rounded">{{ old('description')}}</textarea>
                         @error('description')
                             <div class="text-red-800 text-center">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                <div class="flex justify-center mb-4">
-                    <div class="block">
+                <div class="flex justify-center mb-4 w-full">
+                    <div class="block w-full">
                         <div class="flex justify-center">
                             <label for="article" class="font-bold text-white mb-2">Artículo:</label><br>
                         </div>
-                        <textarea name="article" rows="25" cols="75" value="{{ old('article')}}"
-                        class="bg-white px-4 py-1 border-2 border-black border-solid rounded"></textarea>
+                        {{-- <textarea name="article" rows="25" cols="75" value="{{ old('article')}}"
+                        class="ckeditor bg-white px-4 py-1 border-2 border-black border-solid rounded"></textarea> --}}
+                        <textarea name="article" class="ckeditor">{{ old('article')}}</textarea>
                         @error('article')
                             <div class="text-red-800 text-center">{{ $message }}</div>
                         @enderror

@@ -37,7 +37,7 @@ Route::prefix('admin')->name('admin.')->group(
                 Route::post('store', [NewsController::class, 'store'])->name('store');
                 Route::post('addComent', [NewsController::class, 'addComent'])->name('addComent');
         
-                Route::prefix('{category}')->group(
+                Route::prefix('{news}')->group(
                     function () {
                         Route::get('', [NewsController::class, 'show'])->name('show');
                         Route::get('edit', [NewsController::class, 'edit'])->name('edit');

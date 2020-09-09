@@ -9,6 +9,11 @@
         <div class="block">
                 <div class="flex justify-center mb-4">
                     <div class="block">
+                        @if (!is_null($news->image))
+                            <div class="flex justify-center">
+                                <img src="{{ asset("storage/news-images/{$news->image}")}}" alt="" class="w-full md:w-1/2 h-64 object-cover rounded">
+                            </div>
+                        @endif
                         <div class="flex justify-center">
                             <span class="font-bold text-white mb-2 ">Descripción:</span><br>
                         </div>
@@ -20,10 +25,9 @@
                         <div class="flex justify-center">
                             <span class="font-bold text-white mb-2 ">Articulo</span><br>
                         </div>
-                        <p class="text-white px-4 py-1 border-2 border-solid rounded">
+                        <div class="text-white px-4 py-1 border-2 border-solid rounded">
                             {!! $news->article !!}
-                            
-                        </p>
+                        </div>
                         <br>
 
                         <div class="flex justify-center">
@@ -82,8 +86,8 @@
                         <div class="flex justify-center">
                             <a href="{{ route('admin.users.show', $news->writer) }}" class="flex text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
                                 @if (!is_null($news->user->image))
-                                    <div class="mr-2">
-                                        <img src="{{ asset("storage/users-profilePicture/{$news->user->image}")}}" alt="" class="w-8 rounded-full bg-white">
+                                    <div class="w-8 mr-2">
+                                        <img src="{{ asset("storage/users-profilePicture/{$news->user->image}")}}" alt="" class="h-8 w-full object-cover rounded-full rounded-full bg-white">
                                     </div>
                                 @endif
                                 <div class="flex items-center">
@@ -108,7 +112,7 @@
                         </div>
 
                         <div class="flex justify-center mt-4">
-                            <a href="{{ url()->previous() == route('admin.news.edit', $news->id) ? route('admin.news.index') : url()->previous() }}" 
+                            <a href="{{ url()->previous() == route('admin.news.edit', $news->id) || url()->previous() == route('admin.news.create')   ? route('admin.news.index') : url()->previous() }}" 
                                 class="text-white hover:text-red-800 underline">← Regresar</a>
                         </div>
                         <br>
@@ -128,6 +132,13 @@
                                         <label for="content" class="font-bold text-white mb-2">Agrega un comentario:</label><br>
                                     </div>
                                     <textarea name="content" rows="4" cols="75" class="bg-white px-4 py-1 border-2 border-black border-solid rounded" placeholder="Agrega un comentario"></textarea>
+                                    <div class="flex justify-center">
+                                        @error('content')
+                                            <span class="text-red-800 text-sm" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                             
