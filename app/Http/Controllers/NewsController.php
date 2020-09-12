@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\News;
+use App\models\readingHistory;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -17,7 +20,18 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = News::withCount('comments','readingHistories')
-                        ->findOrFail($id);
+        ->findOrFail($id);
+
+        // readingHistory
+        if (!Auth::guest()) {
+            $readingHistory = readingHistory::updateOrCreate(
+                ['users_id' => auth()->user()->id, 'news_id' => $news->id],
+                ['readed_at' => now()]
+            );
+            
+
+        }
+
         return view('news.show', compact('news'), ['menu'=>'']);
     }
 
@@ -34,6 +48,7 @@ class NewsController extends Controller
         $comment = new Comment($request->only([
             'content',
         ]));
+        $comment->date=now();
 
         $comment->made_by = auth()->user()->id;
         $comment->news_id = $request->news_id;

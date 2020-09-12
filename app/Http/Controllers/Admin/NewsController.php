@@ -145,7 +145,7 @@ class NewsController extends Controller
         $comment = new Comment($request->only([
             'content',
         ]));
-
+        $comment->date = now();
         $comment->made_by = auth()->user()->id;
         $comment->news_id = $request->news_id;
 

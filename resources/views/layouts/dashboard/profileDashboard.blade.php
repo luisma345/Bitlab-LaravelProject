@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Dashboard') | TECH NEWS</title>
+    <title>@yield('title', 'Perfil') | TECH NEWS</title>
 
     <!-- Icon -->
     <link rel="shortcut icon" href="{{ asset('img/logo/TechNewsLogo-Brujula.png')}}" type="image/png">
@@ -29,7 +29,7 @@
                     <div class="flex justify-center">
                         <span class="text-2xl text-white">Ver:</span>
                     </div>
-                    <a href="{{ route('admin.news.index') }}"
+                    <a href="{{ route('profile.show', auth()->user()->id) }}"
                     @if ( $option =='profile')
                         class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
                     @else
@@ -37,9 +37,8 @@
                         rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>
                     @endif
                     Perfil</a>
-                        <a href="{{ route('admin.categories.index') }}"
                     
-                    <a href="{{ route('admin.users.index') }}"
+                    <a href="{{ route('profile.readingHistory') }}"
                     @if ( $option =='user_history')
                         class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
                     @else

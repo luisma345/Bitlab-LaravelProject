@@ -23,11 +23,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        // $news=News::withCount('comments','readingHistories')
+        //         ->orderBy('publication_date', 'DESC')        
+        //         ->paginate(24);
+
         $news=News::withCount('comments','readingHistories')
-                ->orderBy('publication_date', 'DESC')        
-                ->get();
+        ->orderBy('publication_date', 'DESC')        
+        ->paginate(24);
 
         return view('home',['menu'=>'main'], compact('news'));
     }

@@ -16,10 +16,11 @@ class CreateReadingHistoriesTable extends Migration
         Schema::create(
             'reading_histories', 
             function (Blueprint $table) {
+                $table->id();
                 $table->unsignedBigInteger('users_id');
                 $table->unsignedBigInteger('news_id');
                 $table->boolean('liked')->default(false);
-                $table->timestamps();
+                $table->dateTime('readed_at')->index();
                 $table->softDeletes();
 
                 $table->unique(['users_id','news_id']);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Dashboard') | TECH NEWS</title>
+    <title>@yield('title', 'Dashboard') - DASHBOARD | TECH NEWS</title>
 
     <!-- Icon -->
     <link rel="shortcut icon" href="{{ asset('img/logo/TechNewsLogo-Brujula.png')}}" type="image/png">

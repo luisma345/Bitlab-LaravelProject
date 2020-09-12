@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
+use App\models\readingHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -75,5 +77,18 @@ class ProfileController extends Controller
 
 
         return redirect()->route('profile.show', $users->id);
+    }
+
+    public function readingHistory(){
+        $readed = readingHistory::with([
+                    'news' => function ($query){
+                        $query->withCount('comments','readingHistories');
+                    }
+                ]
+                )
+                ->where('users_id',auth()->user()->id)
+                ->get();
+
+        return view('profile.readedHistory',['option'=>'user_history'], compact('readed'));
     }
 }

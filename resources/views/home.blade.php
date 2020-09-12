@@ -4,6 +4,25 @@
 
 @section('content')
 <div class="mt-4">
+    <div class="flex justify-center my-4">
+        <div class="block">
+            <form action="{{ route('/') }}" method="GET">
+                <div class="flex justify-center">
+                    <h2 class="text-white text-2xl font-bold">Buscar Noticia</h2>
+                </div>
+                <div class="flex items-top w-full">
+                    <div class="ml-2">
+                        <input type="text" name="keyWord" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-full">
+                    </div>
+                    <div>
+                        @include('partials.ui.redButton', ['label' => 'Buscar'])
+                    </div>
+                </div>
+
+            </form>
+            
+        </div>
+    </div>
     @if (count($news) == 0)
         <div class="flex justify-center mt-8">
             <div class="block">
@@ -63,6 +82,32 @@
             @endforeach
         </div>
     @endif
+    <div class="flex justify-center my-8">
+        <div class="block">
+            <div class="flex justify-center">
+                <span class="text-white">Cantidad de noticias: {{$news->total() }}</span>
+            </div>
+            <div class="flex mt-1">
+                @if ($news->hasPages())
+                    <span class="text-white mx-2">
+                        @if (!$news->onFirstPage())
+                            <a href="{{ $news->previousPageUrl() }}" class="hover:text-red-800 underline" >←</a>
+                        @else
+                            ←
+                        @endif
+                    </span>
+                    <span class="text-white mx-2">Página {{ $news->currentPage() }}/{{$news->lastPage()}}</span>
+                    <span class="text-white mx-2">
+                        @if ($news->hasMorePages())
+                            <a href="{{ $news->nextPageUrl() }}" class="hover:text-red-800 underline">→</a>
+                        @else
+                            →
+                        @endif
+                    </span>
+                @endif
+            </div>
+        </div>
+    </div>
 </div>    
     
 @endsection
