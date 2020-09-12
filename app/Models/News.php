@@ -62,6 +62,15 @@ class News extends Model
     {
         return $this->hasMany(readingHistory::class)->where('liked',true);
     }
+    /**
+     * Returns the Reading Histories
+     *
+     * @return void
+     */
+    public function readingHistory()
+    {
+        return $this->hasMany(readingHistory::class);
+    }
 
     /**
      * Get the options for generating the slug.

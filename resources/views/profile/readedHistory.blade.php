@@ -41,7 +41,11 @@
                             </div>
                             <div class="flex font-bold px-4 py-1 border-2 border-solid rounded mr-4 bg-white">
                                 <div class="p-1 mr-1">
-                                    <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-4 h-4">
+                                    @if ($item->liked)
+                                        <img src="{{ asset('img/icons/liked1.svg') }}" alt="Likes-Icon" class="w-4 h-4">
+                                    @else
+                                        <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-4 h-4">
+                                    @endif
                                 </div>
                                 <div class="flex items-center text-black">
                                     {{ $item->news->reading_histories_count }} 

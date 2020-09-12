@@ -3,6 +3,7 @@
 @section('title','Inicio')
 
 @section('content')
+
 <div class="mt-4">
     <div class="flex justify-center my-4">
         <div class="block">
@@ -10,11 +11,11 @@
                 <div class="flex justify-center">
                     <h2 class="text-white text-2xl font-bold">Buscar Noticia</h2>
                 </div>
-                <div class="flex items-top w-full">
-                    <div class="ml-2">
-                        <input type="text" name="keyword" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-full">
+                <div class="flex w-full">
+                    <div class="flex items-center mr-2">
                     </div>
-                    <div>
+                    <div class="flex items-center">
+                        <input type="text" name="keyword" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold w-full">
                         @include('partials.ui.redButton', ['label' => 'Buscar'])
                     </div>
                 </div>
@@ -60,11 +61,15 @@
                             <div class="flex font-bold px-4 py-1 border-2 border-solid rounded mr-4 bg-white">
                                 <div class="p-1 mr-2">
                                     @if (!Auth::guest())
-                                        {{-- @if ($readingHistory->liked)
-                                            <img src="{{ asset('img/icons/liked1.svg') }}" alt="Likes-Icon" class="w-4 h-4">
+                                        @if (isset($item->readingHistory[0]))
+                                            @if ($item->readingHistory[0]->liked)
+                                                <img src="{{ asset('img/icons/liked1.svg') }}" alt="Likes-Icon" class="w-4 h-4">
+                                            @else
+                                                <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-4 h-4">
+                                            @endif
                                         @else
                                             <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-4 h-4">
-                                        @endif --}}
+                                        @endif
                                     @else
                                         <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-4 h-4">
                                     @endif

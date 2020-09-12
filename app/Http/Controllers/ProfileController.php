@@ -18,7 +18,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $users= User::findOrFail($id);
+        $users= User::findOrFail(auth()->id());
         return view('profile.show', compact('users'), ['option'=>'profile']);
     }
     /**
@@ -56,7 +56,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $users = User::findOrFail($id);
+        $users = User::findOrFail(auth()->id());
 
         $users->fill($request->only([
             'email',
@@ -80,12 +80,12 @@ class ProfileController extends Controller
     }
 
     public function readingHistory(){
+        User::findOrFail(auth()->id());
+
         $readed = readingHistory::with([
                     'news' => function ($query){
                         $query->withCount('comments','readingHistories');
-                    }
-                ]
-                )
+                    }])
                 ->where('users_id',auth()->user()->id)
                 ->get();
 

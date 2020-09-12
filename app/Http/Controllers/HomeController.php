@@ -37,28 +37,19 @@ class HomeController extends Controller
                     $query->where('title','like',"%$request->keyword%");
                 }
             );
-            $news = $query->withCount('comments','readingHistories')
-            ->orderBy('publication_date', 'DESC')        
-            ->paginate(24);
-            $news->appends($_GET);
-
-        return view('home',['menu'=>'main'], compact('news'));
-
+            
         }
 
-        $news=News::withCount('comments','readingHistories')
-        ->orderBy('publication_date', 'DESC')        
-        ->paginate(24);
+        if (!Auth::guest()) {
+            $news = $query->with(['readingHistory' => function ($query){
+                $query->where('users_id', auth()->id());
+            }]);
+        }
+        $news = $query->withCount('comments','readingHistories')
+            ->orderBy('publication_date', 'DESC')        
+            ->paginate(24);;
 
-        // // readingHistory
-        // if (!Auth::guest()) {
-        //     $readingHistory = readingHistory::where(
-        //         'users_id', auth()->user()->id
-        //     )->get();
-        //     dd($readingHistory);
-        // return view('home',['menu'=>'main'], compact(['news', 'readingHistory']));
-
-        // }
+        $news->appends($_GET);
 
         return view('home',['menu'=>'main'], compact('news'));
     }
