@@ -28,11 +28,31 @@ class NewsController extends Controller
                 ['users_id' => auth()->user()->id, 'news_id' => $news->id],
                 ['readed_at' => now()]
             );
-            
+            return view('news.show', compact(['news', 'readingHistory']), ['menu'=>'']);    
 
         }
 
         return view('news.show', compact('news'), ['menu'=>'']);
+    }
+
+    public function likeNews($id){
+        $news=News::findOrFail($id);
+        $readingHistory=readingHistory::where(
+                ['users_id' => auth()->user()->id, 'news_id' => $news->id])
+                ->firstOrFail();
+        $readingHistory->liked=true;
+        $readingHistory->save();
+
+        return redirect()->route('news.show', $news->id);
+    }
+    public function unlikeNews($id){
+        $news=News::findOrFail($id);
+        $readingHistory=readingHistory::where(
+                ['users_id' => auth()->user()->id, 'news_id' => $news->id])
+                ->firstOrFail();
+        $readingHistory->liked=false;
+        $readingHistory->save();
+        return redirect()->route('news.show', $news->id);
     }
 
     public function addComent(Request $request)

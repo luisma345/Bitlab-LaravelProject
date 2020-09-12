@@ -25,15 +25,38 @@
                         </div>
 
                         <div class="flex px-4">
-
-                            {{-- Cantidad de Likes --}}
                             <div class="flex text-white px-4 py-1 mr-4">
+                            {{-- Cantidad de Likes --}}
+                            @if (!Auth::guest())
+                                @if ($readingHistory->liked)
+                                    <form action="{{ route('news.unliked', $news->id )}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="PUT">
+                                        <button>
+                                            <div class="p-1 mr-2">
+                                                <img src="{{ asset('img/icons/liked1.svg') }}" alt="Likes-Icon" class="w-6 h-6">
+                                            </div>
+                                        </button>
+                                    </form>   
+                                @else
+                                     <form action="{{ route('news.liked', $news->id )}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="PUT">
+                                        <button>
+                                            <div class="p-1 mr-2">
+                                                <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-6 h-6">
+                                            </div>
+                                        </button>
+                                    </form>    
+                                @endif
+                            @else
                                 <div class="p-1 mr-2">
                                     <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-6 h-6">
                                 </div>
+                            @endif
                                 <div class="flex items-center">
                                     {{ $news->reading_histories_count }} 
-                                </div>
+                                </div>  
                             </div>
                             {{-- Cantidad de Comentarios --}}
                             <div class="flex text-white px-4 py-1">

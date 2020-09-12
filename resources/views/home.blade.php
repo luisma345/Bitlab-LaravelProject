@@ -12,7 +12,7 @@
                 </div>
                 <div class="flex items-top w-full">
                     <div class="ml-2">
-                        <input type="text" name="keyWord" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-full">
+                        <input type="text" name="keyword" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-full">
                     </div>
                     <div>
                         @include('partials.ui.redButton', ['label' => 'Buscar'])
@@ -29,7 +29,12 @@
                 <div class="flex justify-center">
                     <img class="block w-12 text-center" src="{{ asset('img/icons/alert.svg')}}" alt="Alert!">
                 </div>
-                <p class="block text-white text-xl">¡No hay noticias disponibles!</p>
+                <p class="block text-white text-xl">¡No encontramos resultados de tu búsqueda!</p>
+                <br>
+                <div class="flex justify-center mt-4">
+                    <a href="{{ route('/') }}" 
+                        class="text-white hover:text-red-800 underline">← Regresar</a>
+                </div>
             </div>
         </div>
     @else
@@ -53,8 +58,16 @@
                                 </p>
                             </div>
                             <div class="flex font-bold px-4 py-1 border-2 border-solid rounded mr-4 bg-white">
-                                <div class="p-1 mr-1">
-                                    <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-4 h-4">
+                                <div class="p-1 mr-2">
+                                    @if (!Auth::guest())
+                                        {{-- @if ($readingHistory->liked)
+                                            <img src="{{ asset('img/icons/liked1.svg') }}" alt="Likes-Icon" class="w-4 h-4">
+                                        @else
+                                            <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-4 h-4">
+                                        @endif --}}
+                                    @else
+                                        <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-4 h-4">
+                                    @endif
                                 </div>
                                 <div class="flex items-center text-black">
                                     {{ $item->reading_histories_count }} 

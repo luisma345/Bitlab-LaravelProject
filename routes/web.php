@@ -37,6 +37,8 @@ Route::prefix('news')->name('news.')->group(
         Route::prefix('{news}')->group(
             function () {
                 Route::get('', [NewsController::class, 'show'])->name('show');
+                Route::put('liked', [NewsController::class, 'likeNews'])->name('liked');
+                Route::put('unliked', [NewsController::class, 'unlikeNews'])->name('unliked');
             }
         );
     }
