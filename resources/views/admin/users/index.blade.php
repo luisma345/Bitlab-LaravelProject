@@ -78,6 +78,9 @@
                 <td class="py-1">
                     @if (!(auth()->id()==$user->id))
                         @include('partials.ui.blueLinkButton', ['label' => 'Editar', 'url' => route('admin.users.edit', $user->id)])
+                    @else 
+                    <span class="bg-blue-800 bg-opacity-75 text-white text-opacity-75 p-2 mb-4 rounded">Editar
+                    </span>
                     @endif
                 </td>
             </tr>
