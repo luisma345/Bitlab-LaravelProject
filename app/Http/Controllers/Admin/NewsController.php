@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Storage;
 class NewsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -62,7 +71,7 @@ class NewsController extends Controller
             'publication_date',
         ]));
 
-        $news->writer = 1; // auth()->user()->id
+        $news->writer = auth()->user()->id; 
         $news->category_id = $request->category_id;
         $news->image=basename(Storage::put('news-images', $request->image));
 

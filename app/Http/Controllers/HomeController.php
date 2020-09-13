@@ -27,9 +27,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        // $news=News::withCount('comments','readingHistories')
-        //         ->orderBy('publication_date', 'DESC')        
-        //         ->paginate(24);
         $query=News::query();
         if(!is_null($request->keyword)){
             $query->where(

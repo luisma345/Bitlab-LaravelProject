@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title',$news->title ." | Noticias - TechNews")
+@section('title',$news->title ." - Noticias")
 
 
 @section('content')

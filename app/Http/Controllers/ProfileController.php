@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Storage;
 class ProfileController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -21,6 +31,7 @@ class ProfileController extends Controller
         $users= User::findOrFail(auth()->id());
         return view('profile.show', compact('users'), ['option'=>'profile']);
     }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Auth;
 class NewsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

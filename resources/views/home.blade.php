@@ -11,13 +11,9 @@
                 <div class="flex justify-center">
                     <h2 class="text-white text-2xl font-bold">Buscar Noticia</h2>
                 </div>
-                <div class="flex w-full">
-                    <div class="flex items-center mr-2">
-                    </div>
-                    <div class="flex items-center">
-                        <input type="text" name="keyword" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold w-full">
-                        @include('partials.ui.redButton', ['label' => 'Buscar'])
-                    </div>
+                <div class="flex items-center w-full my-2">
+                    <input type="text" name="keyword" class="bg-white px-4 py-1 mr-2 border-2 border-black border-solid rounded font-bold w-full">
+                    @include('partials.ui.redButton', ['label' => 'Buscar'])
                 </div>
 
             </form>
