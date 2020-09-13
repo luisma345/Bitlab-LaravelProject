@@ -34,7 +34,7 @@ class HomeController extends Controller
         }
         $news = $query->withCount('comments','readingHistories')
             ->orderBy('publication_date', 'DESC')        
-            ->paginate(24);;
+            ->paginate(24);
 
         $news->appends($_GET);
 

@@ -57,10 +57,10 @@ Route::prefix('admin')->name('admin.')->group(
         
                 Route::prefix('{users}')->group(
                     function () {
-                        Route::get('', [UserController::class, 'show'])->name('show');
                         Route::get('edit', [UserController::class, 'edit'])->name('edit');
                         Route::put('', [UserController::class, 'update'])->name('update');
                         Route::delete('', [UserController::class, 'destroy'])->name('destroy');
+                        Route::post('', [UserController::class, 'restore'])->name('restore');
                     }
                 );
             }

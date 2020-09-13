@@ -13,7 +13,7 @@
                 </div>
                 <div class="flex items-center w-full my-2">
                     <input type="text" name="keyword" class="bg-white px-4 py-1 mr-2 border-2 border-black border-solid rounded font-bold w-full">
-                    @include('partials.ui.redButton', ['label' => 'Buscar'])
+                    @include('partials.ui.blueButton', ['label' => 'Buscar'])
                 </div>
 
             </form>

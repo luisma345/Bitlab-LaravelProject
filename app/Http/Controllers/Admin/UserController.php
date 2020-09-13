@@ -24,9 +24,26 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users=User::select('id', 'user_name', 'email', 'image')->get();
+        $users = User::with('role')->withTrashed();
+        $query=User::query();
+        if(!is_null($request->keyword)){
+            $query->where(
+                function($query) use ($request){
+                    $query->where('user_name','like',"%$request->keyword%")
+                            ->orWhere('email','like',"%$request->keyword%")
+                            ->orWhere('first_name','like',"%$request->keyword%")
+                            ->orWhere('last_name','like',"%$request->keyword%");
+                }
+            );
+            
+        }
+        $users = $query->paginate(15);;
+
+        $users->appends($_GET);
+
+        // dd($users);
         return view('admin.users.index',['option'=>'user'], compact('users'));
     }
 
@@ -69,21 +86,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $users = User::findOrFail($id);
-        return view('admin.users.show', compact('users'), ['option'=>'user']);
-
-        // $users = User::where('id',1)->findOrFail($id);
-        // return view('admin.users.profile', compact('users'), ['option'=>'profile']);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -91,7 +93,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $users = User::findOrFail($id);
+        $users = User::withTrashed()->where('id','!=', auth()->id())->findOrFail($id);
         $roles = Role::get();
         return view('admin.users.edit', compact(['users','roles']), ['option'=>'user']);
     }
@@ -128,7 +130,7 @@ class UserController extends Controller
         $users->save();
 
 
-        return redirect()->route('admin.users.show', $users->id);
+        return redirect()->route('admin.users.edit', $users->id);
     }
 
     /**
@@ -141,6 +143,13 @@ class UserController extends Controller
     {
         User::destroy($id);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.edit', $id);
+    }
+
+    public function restore($id)
+    {
+        User::withTrashed()->where('id',$id)->restore();
+
+        return redirect()->route('admin.users.edit', $id);
     }
 }

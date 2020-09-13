@@ -102,7 +102,7 @@
                                 Escritor:
                             </div>
                             @if (!Auth::guest() && auth()->user()->role_id == 3)
-                                <a href="{{ route('admin.users.show', $news->writer) }}" class="flex text-white px-2 py-1 hover:text-red-800 underline">
+                                <a href="{{ route('admin.users.edit', $news->writer) }}" class="flex text-white px-2 py-1 hover:text-red-800 underline">
                             @else
                                 <a class="flex text-white px-2 py-1">
                             @endif
@@ -138,8 +138,8 @@
                                     <div class="text-white text-center p-4 mb-8 border-2 border-solid rounded">
                                         <p class="text-xl">{{ $comment->content }}</p>
                                         <span class="text-sm mt-2">Comentario por: 
-                                            @if (!Auth::guest() && auth()->user()->role_id == 3)
-                                                <a href="{{ route('admin.users.show', $comment->made_by ) }}" class="hover:text-red-800 underline hover:font-bold">{{ $comment->user->user_name }}</a>
+                                            @if (!Auth::guest() && auth()->user()->role_id == 3 && auth()->id() != $comment->made_by)
+                                                <a href="{{ route('admin.users.edit', $comment->made_by ) }}" class="hover:text-red-800 underline hover:font-bold">{{ $comment->user->user_name }}</a>
                                             @else
                                                 {{ $comment->user->user_name }}
                                             @endif

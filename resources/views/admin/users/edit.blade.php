@@ -1,8 +1,8 @@
 @extends('layouts.dashboard.adminDashboard')
 
-@section('title','Actualizar Perfil Administrador')
+@section('title','Editar Perfil')
 
-@section('h1','Actualizar Perfil:')
+@section('h1','Editar Perfil:')
 
 @section('content')
     <div class="flex justify-center mt-8">
@@ -116,8 +116,23 @@
                     @include('partials.ui.redButton', ['label' => 'Acualizar Usuario'])
                 </div>
             </form>
+            <div class="flex justify-center mt-8">
+            @if (is_null($users->deleted_at))
+                <form action="{{ route('admin.users.destroy', $users->id) }}" 
+                method="POST" class="mb-4" onsubmit="return confirm('¿Realmente quieres desactivar este usuario?');">
+                    @csrf
+                    @method('DELETE')
+                    @include('partials.ui.redButton', ['label' => 'Desactivar Usuario'])
+                </form>
+            @else
+                 <form action="{{ route('admin.users.restore', $users->id) }}" method="POST" class="mb-4">
+                    @csrf
+                    @include('partials.ui.blueButton', ['label' => 'Reactivar Usuario'])
+                </form>
+            @endif
+            </div>
             <div class="flex justify-center mt-4">
-                <a href="{{ route('admin.users.show', $users->id) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                <a href="{{ route('admin.users.index') }}" class="text-white hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>
