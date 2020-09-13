@@ -98,9 +98,9 @@
     @endif
     <div class="flex justify-center my-8">
         <div class="block">
-            <div class="flex justify-center">
+            {{-- <div class="flex justify-center">
                 <span class="text-white">Cantidad de noticias: {{$news->total() }}</span>
-            </div>
+            </div> --}}
             <div class="flex mt-1">
                 @if ($news->hasPages())
                     <span class="text-white mx-2">
