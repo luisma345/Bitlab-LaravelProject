@@ -77,4 +77,5 @@ Route::prefix('categories')->name('categories.')->group(
 );
 
 require base_path('routes/web-admin.php');
+require base_path('routes/web-writer.php');
 
