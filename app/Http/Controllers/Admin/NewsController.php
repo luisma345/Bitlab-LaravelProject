@@ -25,12 +25,27 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $news=News::withCount('comments','readingHistories')        
-            ->orderBy('publication_date', 'DESC')
-            ->get();
-        return view('admin.news.index',['option'=>'news'], compact('news'));
+        // $news=News::withCount('comments','readingHistories')
+        //     ->orderBy('publication_date', 'DESC')
+        //     ->get();
+        $query=News::query();
+        if(!is_null($request->keyword)){
+            $query->where(
+                function($query) use ($request){
+                    $query->where('title','like',"%$request->keyword%")
+                        ->orWhere('description','like',"%$request->keyword%");
+                }
+            );
+            
+        }
+        $news = $query->withCount('comments','readingHistories')
+            ->orderBy('publication_date', 'DESC')        
+            ->paginate(20);
+
+        $news->appends($_GET);
+        return view('admin.news.index',['option'=>'news'], compact(['news', 'request']));
     }
 
     /**

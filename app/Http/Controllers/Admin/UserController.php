@@ -26,7 +26,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::with('role')->withTrashed();
         $query=User::query();
         if(!is_null($request->keyword)){
             $query->where(
@@ -39,11 +38,11 @@ class UserController extends Controller
             );
             
         }
-        $users = $query->paginate(15);;
+        // $users = $query
+        $users = $query->with('role')->withTrashed()->paginate(15);
 
         $users->appends($_GET);
 
-        // dd($users);
         return view('admin.users.index',['option'=>'user'], compact('users'));
     }
 

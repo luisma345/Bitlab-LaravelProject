@@ -84,7 +84,7 @@
                             <span class="font-bold text-white mb-2 ">Escritor: </span><br>
                         </div>
                         <div class="flex justify-center">
-                            <a href="{{ route('admin.users.show', $news->writer) }}" class="flex text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
+                            <a href="{{ route('admin.users.edit', $news->writer) }}" class="flex text-white px-4 py-1 border-2 border-solid rounded hover:text-red-800 underline">
                                 @if (!is_null($news->user->image))
                                     <div class="w-8 mr-2">
                                         <img src="{{ asset("storage/users-profilePicture/{$news->user->image}")}}" alt="" class="h-8 w-full object-cover rounded-full rounded-full bg-white">
@@ -151,7 +151,13 @@
                         @foreach ($news->comments as $comment)
                             <div class="text-white text-center p-4 mb-8 border-2 border-solid rounded">
                                 {{ $comment->content }}<br>
-                                Comentario por: <a href="{{ route('admin.users.show', $comment->made_by ) }}" class="hover:text-red-800 underline hover:font-bold">{{ $comment->user->user_name }}</a>
+                                Comentario por: 
+                                @if (auth()->id() != $comment->made_by)
+                                    <a href="{{ route('admin.users.edit', $comment->made_by ) }}" class="hover:text-red-800 underline hover:font-bold">{{ $comment->user->user_name }}</a>
+                                @else 
+                                    <span>{{ $comment->user->user_name }}</span>
+                                @endif
+                                    
                             </div>
                         @endforeach
                     </div>

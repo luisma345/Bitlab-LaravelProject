@@ -99,6 +99,7 @@ class ProfileController extends Controller
                     }])
                 ->where('users_id',auth()->user()->id)
                 ->get();
+                
 
         return view('profile.readedHistory',['option'=>'user_history'], compact('readed'));
     }
