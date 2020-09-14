@@ -12,7 +12,8 @@
                     <h2 class="text-white text-2xl font-bold">Buscar Noticia</h2>
                 </div>
                 <div class="flex items-center w-full my-2">
-                    <input type="text" name="keyword" class="bg-white px-4 py-1 mr-2 border-2 border-black border-solid rounded font-bold w-full">
+                    <input type="text" name="keyword" class="bg-white px-4 py-1 mr-2 border-2 border-black border-solid rounded font-bold w-full"
+                    value="{{ request()->keyword }}">
                     @include('partials.ui.blueButton', ['label' => 'Buscar'])
                 </div>
 
@@ -35,8 +36,20 @@
             </div>
         </div>
     @else
+        @if (!is_null(request()->keyword))
+            <div class="flex justify-center mt-2">
+                <a href="{{ route('/') }}" 
+                    class="text-white hover:text-red-800 underline">← Limpiar busqueda</a>
+            </div>
+            <div class="flex justify-center mt-2">
+                <span class="text-white">Cantidad de resultados: {{$news->total() }}</span>
+            </div>                
+        @endif
         <div class="flex flex-col md:flex-row flex-wrap h-full">
             @foreach($news as $item)
+            <div class="text-white">
+                {{-- {{ print_r($item->user)}} --}}
+            </div>
                 <div class="w-full md:w-1/3 p-2 h-full">
                         <a href="{{ route('news.show', $item->id) }}" 
                             class="block items-center bg-white p-4 w-full h-full rounded 
@@ -82,7 +95,7 @@
                                 <div class="flex items-center ml-2 text-black">
                                     <span class="mr-2 font-normal">Escritor:</span>
                                     <div class="flex items-center">
-                                        {{ $item->user->user_name }} 
+                                        {{ $item->user->user_name }}
                                         @if (!is_null($item->user->image))
                                             <div class="w-6 ml-1">
                                                 <img src="{{ asset("storage/users-profilePicture/{$item->user->image}")}}" alt="" class="h-6 w-full object-cover rounded-full bg-white">
@@ -98,9 +111,6 @@
     @endif
     <div class="flex justify-center my-8">
         <div class="block">
-            {{-- <div class="flex justify-center">
-                <span class="text-white">Cantidad de noticias: {{$news->total() }}</span>
-            </div> --}}
             <div class="flex mt-1">
                 @if ($news->hasPages())
                     <span class="text-white mx-2">

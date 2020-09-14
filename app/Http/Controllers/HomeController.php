@@ -38,7 +38,7 @@ class HomeController extends Controller
 
         $news->appends($_GET);
 
-        return view('home',['menu'=>'main'], compact('news'));
+        return view('home',['menu'=>'main'], compact(['news']));
     }
 
     /**
