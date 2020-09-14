@@ -45,7 +45,7 @@ class NewsController extends Controller
             ->paginate(20);
 
         $news->appends($_GET);
-        return view('admin.news.index',['option'=>'news'], compact(['news', 'request']));
+        return view('admin.news.index',['option'=>'news'], compact('news'));
     }
 
     /**

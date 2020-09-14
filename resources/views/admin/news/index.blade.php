@@ -32,7 +32,7 @@
             </div>
         </div>
     @else
-        @if (!is_null($request->keyword))
+        @if (!is_null(request()->keyword))
             <div class="flex justify-center mt-2">
                 <a href="{{ route('admin.news.index') }}" 
                     class="text-white hover:text-red-800 underline">← Limpiar busqueda</a>
