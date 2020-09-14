@@ -74,9 +74,29 @@
                 </div>
                 </div>
             @endforeach
+            <div class="flex justify-center my-8">
+                <div class="block">
+                    <div class="flex mt-1">
+                        @if ($readed->hasPages())
+                            <span class="text-white mx-2">
+                                @if (!$readed->onFirstPage())
+                                    <a href="{{ $readed->previousPageUrl() }}" class="hover:text-red-800 underline" >←</a>
+                                @else
+                                    ←
+                                @endif
+                            </span>
+                            <span class="text-white mx-2">Página {{ $readed->currentPage() }}/{{$readed->lastPage()}}</span>
+                            <span class="text-white mx-2">
+                                @if ($readed->hasMorePages())
+                                    <a href="{{ $readed->nextPageUrl() }}" class="hover:text-red-800 underline">→</a>
+                                @else
+                                    →
+                                @endif
+                            </span>
+                        @endif
+                    </div>
+                </div>
+            </div>
     @endif
-            
-        {{-- </div>
-    </div> --}}
     
 @endsection

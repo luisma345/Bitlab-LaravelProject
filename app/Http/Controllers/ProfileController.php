@@ -98,7 +98,8 @@ class ProfileController extends Controller
                         $query->withCount('comments','readingHistories');
                     }])
                 ->where('users_id',auth()->user()->id)
-                ->get();
+                ->orderBy('readed_at', 'DESC')
+                ->paginate(20);
                 
 
         return view('profile.readedHistory',['option'=>'user_history'], compact('readed'));

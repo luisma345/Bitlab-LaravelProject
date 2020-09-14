@@ -47,9 +47,6 @@
         @endif
         <div class="flex flex-col md:flex-row flex-wrap h-full">
             @foreach($news as $item)
-            <div class="text-white">
-                {{-- {{ print_r($item->user)}} --}}
-            </div>
                 <div class="w-full md:w-1/3 p-2 h-full">
                         <a href="{{ route('news.show', $item->id) }}" 
                             class="block items-center bg-white p-4 w-full h-full rounded 
