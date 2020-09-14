@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('writer')->middleware('writer')->name('writer.')->group(
     function () {
-        // DASHBOARD WRITER
-        Route::get('dashboard', 'Writer\DashboardController')->name('dashboard');
 
         // News
         Route::prefix('news')->name('news.')->group(
