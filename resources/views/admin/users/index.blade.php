@@ -28,10 +28,19 @@
                 <div class="flex justify-center">
                     <img class="block w-12 text-center" src="{{ asset('img/icons/alert.svg') }}" alt="Alert!">
                 </div>
-                <p class="block text-white text-xl">¡No se encontraron resultados!</p>
+                <p class="block text-white text-sm">¡No se encontraron resultados!</p>
             </div>
         </div>
     @else
+        @if (!is_null(request()->keyword))
+            <div class="flex justify-center mt-2">
+                <a href="{{ route('admin.users.index') }}" 
+                    class="text-white hover:text-red-800 underline">← Limpiar busqueda</a>
+            </div>
+            <div class="flex justify-center mt-2">
+                <span class="text-white">Cantidad de resultados: {{$users->total() }}</span>
+            </div>                
+        @endif
 <div class="mt-4 mr-4">
     <table class="text-white table-auto w-full">
         <thead>
