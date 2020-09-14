@@ -7,10 +7,10 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->name('admin.')->group(
+Route::prefix('admin')->middleware('admin')->name('admin.')->group(
     function () {
         // DASHBOARD ADMIN
-        Route::get('dashboard', [DashboarController::class, 'index'])->name('dashboard');
+        Route::get('dashboard', 'Admin\DashboardController')->name('dashboard');
 
         //Categories
         Route::prefix('categories')->name('categories.')->group(
