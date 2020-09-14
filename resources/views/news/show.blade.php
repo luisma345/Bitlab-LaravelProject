@@ -29,24 +29,24 @@
                             {{-- Cantidad de Likes --}}
                             @if (!Auth::guest())
                                 @if ($readingHistory->liked)
-                                    <form action="{{ route('news.unliked', $news->id )}}" method="POST">
+                                    <form action="{{ route('news.unliked', $news->id )}}" method="POST" id='unliked'>
                                         @csrf
                                         <input type="hidden" name="_method" value="PUT">
-                                        <button>
+                                        <a href="#" onclick="document.getElementById('unliked').submit();">
                                             <div class="p-1 mr-2">
                                                 <img src="{{ asset('img/icons/liked1.svg') }}" alt="Likes-Icon" class="w-6 h-6">
                                             </div>
-                                        </button>
+                                        </a>
                                     </form>   
                                 @else
-                                     <form action="{{ route('news.liked', $news->id )}}" method="POST">
+                                     <form action="{{ route('news.liked', $news->id )}}" method="POST" id='liked'>
                                         @csrf
                                         <input type="hidden" name="_method" value="PUT">
-                                        <button>
+                                        <a href="#" onclick="document.getElementById('liked').submit();">
                                             <div class="p-1 mr-2">
                                                 <img src="{{ asset('img/icons/liked0.svg') }}" alt="Likes-Icon" class="w-6 h-6">
                                             </div>
-                                        </button>
+                                        </a>
                                     </form>    
                                 @endif
                             @else
