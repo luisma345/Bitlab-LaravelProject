@@ -68,7 +68,17 @@
                         </span>
                     @enderror
                 </div> 
-
+                <div class="block text-center">
+                    <label class="text-white" for="age">Edad:</label><br>
+                    <input type="number" name="age" min="0" max="100" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold" required autocomplete="age">
+                </div>
+                <div class="block text-center">
+                    @error('age')
+                        <span class="text-red-800 text-sm" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div> 
                 <div class="text-center mt-2">
                     <button class="bg-red-800 text-white p-2 
                                 border-2 border-black border-solid rounded 
