@@ -50,7 +50,7 @@ class News extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'writer');
+        return $this->belongsTo(User::class, 'writer')->withTrashed();
     }
 
     /**
