@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\News;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,46 +29,20 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $query=Category::query();
-            
-        if (!Auth::guest()) {
-            $categories = $query->with(
-                [
-                    'news' => function ($query){
-                        $query->withCount('comments','readingHistories')
-                        ->with(
-                            [
-                                'readingHistory' => function ($query){
-                                    $query->where('users_id', auth()->id());
-                                }
-                            ]
-                        )
-                        ->orderby('publication_date', 'DESC');  
-                    }   
-                ]
-            );
-        }
-        else{
-            $categories = $query->with(
-                [
-                    'news' => function ($query){
-                        $query->withCount('comments','readingHistories')
-                        ->orderby('publication_date', 'DESC');
-                    }
-                ]
-            );
-        }
+        $category=Category::findOrFail($id);
         
-        // $categories = $query->orderBy('publication_date', 'DESC')        
-        //     ->paginate(24);
+        $query=News::query();
+        if (!Auth::guest()) {
+            $news = $query->with(['readingHistory' => function ($query){
+                $query->where('users_id', auth()->id());
+            }]);
+        }
+        $news = $query->where('category_id', $category->id );
+        $news = $query->withCount('comments','readingHistories')
+            ->orderBy('publication_date', 'DESC')        
+            ->paginate(24);
 
-        // $categories->appends($_GET);
-
-
-        $category = $query->findOrFail($id);
-
-        // dd($category);
             
-        return view('categories.show', compact('category'), ['menu'=>'category']);
+        return view('categories.show', compact(['category','news']), ['menu'=>'category']);
     }
 }

@@ -27,7 +27,7 @@
 </div>
 <div class="mt-4">
     <div class="flex flex-col md:flex-row flex-wrap h-full">
-        @foreach($category->news as $item)
+        @foreach($news as $item)
             <div class="w-full md:w-1/3 p-2 h-full">
                     <a href="{{ route('news.show', $item->id) }}" 
                         class="block items-center bg-white p-4 w-full h-full rounded 
@@ -85,6 +85,29 @@
                     </a>
             </div>
         @endforeach
+    </div>
+    <div class="flex justify-center my-8">
+        <div class="block">
+            <div class="flex mt-1">
+                @if ($news->hasPages())
+                    <span class="text-white mx-2">
+                        @if (!$news->onFirstPage())
+                            <a href="{{ $news->previousPageUrl() }}" class="hover:text-red-800 underline" >←</a>
+                        @else
+                            ←
+                        @endif
+                    </span>
+                    <span class="text-white mx-2">Página {{ $news->currentPage() }}/{{$news->lastPage()}}</span>
+                    <span class="text-white mx-2">
+                        @if ($news->hasMorePages())
+                            <a href="{{ $news->nextPageUrl() }}" class="hover:text-red-800 underline">→</a>
+                        @else
+                            →
+                        @endif
+                    </span>
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 @endsection
