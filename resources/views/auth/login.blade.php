@@ -48,7 +48,7 @@
                 <div class="text-center mt-2">
                     @if (Route::has('password.request'))
                         <a class="text-white rounded hover:text-red-800 underline text-sm" href="{{ route('password.request') }}">
-                            {{ __('¿Olvidaste tu contraseña?') }}
+                            ¿Olvidaste tu contraseña?
                         </a>
                     @endif
                 </div>
@@ -57,7 +57,7 @@
                     <input class="" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                     <label class="text-white" for="remember">
-                        {{ __('Recuerdame') }}
+                        Recuerdame
                     </label>
                 </div> 
                   
@@ -65,7 +65,7 @@
                     <button class="bg-red-800 text-white p-2 
                                 border-2 border-black border-solid rounded 
                                 hover:bg-white hover:text-red-800 hover:font-bold">
-                                {{ __('Ingresar') }}
+                                Ingresar
                     </button>
                 </div>
                 
@@ -75,8 +75,8 @@
                 
             </form>
             <br>
-            <a href="{{ url()->previous() == route('register') ? route('home') : url()->previous() }}" 
-                class="text-white hover:text-red-800 underline">← Regresar</a>
+            <a href="{{ route('/') }}" 
+                class="text-white hover:text-red-800 underline">← Regresar a Inicio</a>
         </div>
     </div>
 </body>
