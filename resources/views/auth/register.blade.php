@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - TECH NEWS</title>
+    <title>Registrarse - TECH NEWS</title>
     <!-- Icon -->
-    <link rel="shortcut icon" href="img/logo/TechNewsLogo-Brujula.png" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('img/logo/TechNewsLogo-Brujula.png')}}" type="image/png">
     <!-- Tailwind -->
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body class="bg-black">
     <div class="flex justify-center h-screen">
@@ -18,7 +18,7 @@
                 @csrf
 
                 <div class="flex justify-center mb-2">
-                    <img src="img/logo/TechNewsLogo.png" alt="Logo TecNews" width="100px" height="43px" class="p-1 bg-white rounded">
+                <img src="{{ asset('img/logo/TechNewsLogo.png') }}" alt="Logo TecNews" width="100px" height="43px" class="p-1 bg-white rounded">
                 </div>
 
                 <div class="block text-center pb-2">
@@ -51,13 +51,6 @@
                     <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold" type="password" name="password" required autocomplete="new-password">
                 </div>
                 <div class="block text-center">
-                    @error('password')
-                        <span class="text-red-800 text-sm" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div> 
-                <div class="block text-center">
                     <label class="text-white" for="password">Confirmar Contraseña</label><br>
                     <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold" type="password" name="password_confirmation" required autocomplete="new-password">
                 </div>
@@ -70,7 +63,7 @@
                 </div> 
                 <div class="block text-center">
                     <label class="text-white" for="age">Edad:</label><br>
-                    <input type="number" name="age" min="0" max="100" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold" required autocomplete="age">
+                    <input type="number" name="age" min="0" max="100" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold" value="{{ old('age') }}" required autocomplete="age">
                 </div>
                 <div class="block text-center">
                     @error('age')

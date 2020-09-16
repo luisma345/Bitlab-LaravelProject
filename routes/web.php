@@ -46,16 +46,17 @@ Route::prefix('news')->name('news.')->group(
 
 Route::prefix('profile')->name('profile.')->group(
     function () {
+
         // Reading History
         Route::get('readingHistory', [ProfileController::class, 'readingHistory'])->name('readingHistory');
+        // Edit First Time
+        Route::get('editFirstTime', [ProfileController::class, 'editFirstTime'])->name('editFirstTime');
+        Route::put('updateFirstTime', [ProfileController::class, 'updateFirstTime'])->name('updateFirstTime');
 
         Route::prefix('{user}')->group(
             function () {
                 //Profile
                 Route::get('', [ProfileController::class, 'show'])->name('show');
-                
-
-                Route::get('editFirstTime', [ProfileController::class, 'editFirstTime'])->name('editFirstTime');
                 Route::get('edit', [ProfileController::class, 'edit'])->name('edit');
                 Route::put('', [ProfileController::class, 'update'])->name('update');
             }

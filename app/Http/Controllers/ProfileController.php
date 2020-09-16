@@ -38,19 +38,51 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editFirstTime($user_name)
+    public function editFirstTime()
     {
-        $users = User::findOrFail('user_name', auth()->user()->user_name);
-        dd($users);
-        return view('profile.editFirstTime', compact('users'));
+        $user = User::where('user_name', auth()->user()->user_name)->firstOrFail();
+
+        if(is_null(auth()->user()->first_name) && is_null(auth()->user()->last_name)){
+            return view('profile.editFirstTime', compact('user'));
+        }
+        else{
+            return redirect()->route('profile.show', $user->id);
+        }
     }
+
     /**
      * Undocumented function
      *
      * @param [type] $id
      * @return void
      */
-    public function edit($id)
+    public function updateFirstTime(Request $request)
+    {
+        $users = User::findOrFail(auth()->id());
+
+        $users->fill($request->only([
+            'first_name',
+            'last_name',
+        ]));
+
+        if ($request->hasFile('image')) {
+            $users->image=basename(Storage::put('users-profilePicture', $request->image));
+        }
+
+        $users->save();
+
+
+        return redirect()->route('profile.show', $users->id);
+        
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function edit($user_name)
     {
         
         $users = User::where('user_name', auth()->user()->user_name)->firstOrFail();
