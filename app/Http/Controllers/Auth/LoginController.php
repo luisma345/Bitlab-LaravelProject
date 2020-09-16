@@ -26,7 +26,22 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+
+     /**
+     * Get the post register / login redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        if(is_null(auth()->user()->first_name) && is_null(auth()->user()->last_name)){
+            return 'profile/editFirstTime';
+        }
+        else{
+            return '/';
+        }
+    }
 
     /**
      * Create a new controller instance.
