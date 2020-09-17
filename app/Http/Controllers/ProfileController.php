@@ -26,7 +26,7 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user_name)
     {
         $users= User::findOrFail(auth()->id());
         return view('profile.show', compact('users'), ['option'=>'profile']);
@@ -102,7 +102,7 @@ class ProfileController extends Controller
      * @param [type] $id
      * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $users = User::findOrFail(auth()->id());
 
@@ -134,7 +134,7 @@ class ProfileController extends Controller
         $users->save();
 
         $request->session()->flash('profile_updated', true);
-        return redirect()->route('profile.show', $users->id);
+        return redirect()->route('profile.show', $users->user_name);
     }
 
     public function readingHistory(){

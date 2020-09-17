@@ -47,7 +47,7 @@
 
                         
             <div class="flex justify-center mt-8">
-                @include('partials.ui.blueLinkButton', ['label' => 'Actualizar Perfil', 'url' => route('profile.edit', auth()->user()->id)])
+                @include('partials.ui.blueLinkButton', ['label' => 'Actualizar Perfil', 'url' => route('profile.edit', auth()->user()->user_name)])
             </div>
             <div class="flex justify-center mt-4">
                 <form action="{{ route('logout') }}" method="POST" class="mb-4">

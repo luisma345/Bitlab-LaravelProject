@@ -91,10 +91,10 @@
                     </a>
                 @else
                         @if ($menu=='profile')
-                        <a href="{{ route('profile.show', Auth::user()->id) }}" class='block mt-1 px-2 rounded 
+                        <a href="{{ route('profile.show', Auth::user()->user_name) }}" class='block mt-1 px-2 rounded 
                         rounded bg-red-800 text-white md:mt-0 md:ml-2'>
                     @else
-                        <a href="{{ route('profile.show', Auth::user()->id) }}" class='block mt-1 px-2 font-semibold rounded text-black bg-gray-200 
+                        <a href="{{ route('profile.show', Auth::user()->user_name) }}" class='block mt-1 px-2 font-semibold rounded text-black bg-gray-200 
                         rounded hover:bg-red-800 hover:text-white hover:font-normal md:mt-0 md:ml-2'>
                     @endif
                         <div class="flex items-center">

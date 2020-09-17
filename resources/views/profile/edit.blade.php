@@ -9,9 +9,10 @@
             <div class="flex justify-center mb-4 w-full">
                 <h2 class="font-bold text-white text-2xl mr-2">Editar Perfil</h2>
             </div>
-            <form action="{{ route('profile.update', auth()->user()->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('profile.update', auth()->user()->user_name) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
+                
                 @if (!is_null(auth()->user()->image))
                 <div class="flex justify-center mb-4">
                     <div class="w-24">
