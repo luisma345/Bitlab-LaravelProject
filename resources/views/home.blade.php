@@ -48,7 +48,7 @@
         <div class="flex flex-col md:flex-row flex-wrap h-full">
             @foreach($news as $item)
                 <div class="w-full md:w-1/3 p-2 h-full">
-                        <a href="{{ route('news.show', $item->id) }}" 
+                        <a href="{{ route('news.show', $item->slug) }}" 
                             class="block items-center bg-white p-4 w-full h-full rounded 
                                     hover:bg-blue-800 hover:text-white">
                             <div class="flex justify-center mb-2 w-full">

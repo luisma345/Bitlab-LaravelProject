@@ -17,7 +17,6 @@
         alt="Tech News Logo" class="w-10">
         <div class="block">
             <h2 class="w-auto block font-bold ml-2">{{ $category->name }}</h2>
-            {{-- <span class="ml-2">{{ $category->description }} </span> --}}
             <span class="ml-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere repellendus quis beatae ad provident vitae adipisci illo, amet non, laboriosam ex, ducimus libero? Voluptatibus laudantium voluptas rem eveniet cupiditate ratione!</span>
         </div>
     </div>
@@ -29,7 +28,7 @@
     <div class="flex flex-col md:flex-row flex-wrap h-full">
         @foreach($news as $item)
             <div class="w-full md:w-1/3 p-2 h-full">
-                    <a href="{{ route('news.show', $item->id) }}" 
+                    <a href="{{ route('news.show', $item->slug) }}" 
                         class="block items-center bg-white p-4 w-full h-full rounded 
                                 hover:bg-blue-800 hover:text-white">
                         <div class="flex justify-center mb-2 w-full">

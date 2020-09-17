@@ -26,10 +26,10 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         $news = News::withCount('comments','readingHistories')
-        ->findOrFail($id);
+        ->where('slug', $slug)->firstOrFail();
 
         // readingHistory
         if (!Auth::guest()) {
@@ -52,7 +52,7 @@ class NewsController extends Controller
         $readingHistory->liked=true;
         $readingHistory->save();
 
-        return redirect()->route('news.show', $news->id);
+        return redirect()->route('news.show', $news->slug);
     }
     public function unlikeNews($id){
         $news=News::findOrFail($id);
@@ -61,7 +61,7 @@ class NewsController extends Controller
                 ->firstOrFail();
         $readingHistory->liked=false;
         $readingHistory->save();
-        return redirect()->route('news.show', $news->id);
+        return redirect()->route('news.show', $news->slug);
     }
 
     public function addComent(Request $request)
@@ -83,7 +83,9 @@ class NewsController extends Controller
         $comment->news_id = $request->news_id;
 
         $comment->save();
+        
+        $new = News::where('id',$comment->news_id)->firstOrFail();
 
-        return redirect()->route('news.show', $comment->news_id);
+        return redirect()->route('news.show', $new->slug);
     }
 }

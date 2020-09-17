@@ -20,7 +20,7 @@
             @foreach($readed as $item)
             <div class="md:flex md:justify-center my-2">
                 <div class="w-full md:w-2/3">
-                    <a href="{{ route('news.show', $item->news->id) }}" 
+                    <a href="{{ route('news.show', $item->news->slug) }}" 
                         class="flex items-center bg-white p-2 w-full h-full rounded 
                                 hover:bg-blue-800 hover:text-white">
                         <div class="block w-1/3">
