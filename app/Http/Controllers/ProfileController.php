@@ -60,6 +60,12 @@ class ProfileController extends Controller
     {
         $users = User::findOrFail(auth()->id());
 
+        $request->validate([
+            'first_name' => 'required|string|max:191',
+            'last_name' => 'required|string|max:191',
+            'image' => 'nullable|image',
+        ]);
+
         $users->fill($request->only([
             'first_name',
             'last_name',
@@ -84,7 +90,6 @@ class ProfileController extends Controller
      */
     public function edit($user_name)
     {
-        
         $users = User::where('user_name', auth()->user()->user_name)->firstOrFail();
         
         return view('profile.edit', compact(['users']), ['option'=>'profile']);
@@ -100,6 +105,16 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $users = User::findOrFail(auth()->id());
+
+        $request->validate([
+            'user_name' => 'required|string|max:191',
+            'email' => 'required|string|email|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+            'first_name' => 'required|string|max:191',
+            'last_name' => 'required|string|max:191',
+            'age' => 'required|int',
+            'image' => 'nullable|image',
+        ]);
 
         $users->fill($request->only([
             'email',
@@ -118,7 +133,7 @@ class ProfileController extends Controller
 
         $users->save();
 
-
+        $request->session()->flash('profile_updated', true);
         return redirect()->route('profile.show', $users->id);
     }
 

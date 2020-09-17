@@ -5,6 +5,19 @@
 @section('h1','Nombre de la Categoría: '.$category->name)
 
 @section('content')
+{{-- CREATED MESSAGE --}}
+@if (session('cat_stored'))
+<div class="flex justify-center mb-4 w-full">
+    <span class="border border-green-500 p-1 text-center text-green-500">Categoría creada con éxito</span>
+</div>
+@endif
+
+{{-- EDITED MESSAGE --}}
+@if (session('cat_updated'))
+<div class="flex justify-center mb-4 w-full">
+    <span class="border border-green-500 p-1 text-center text-green-500">Categoría editada con éxito</span>
+</div>
+@endif
     <div class="flex justify-center mt-8">
         <div class="block">
                 <div class="flex justify-center mb-4">

@@ -3,6 +3,13 @@
 @section('content')
     <div class="flex justify-center mt-8">
         <div class="block">
+            {{-- UPDATE MESSAGE --}}
+            @if (session('profile_updated'))
+                <div class="flex justify-center mb-4 w-full">
+                    <span class="border border-green-500 p-1 text-center text-green-500">Perfil actualizado con éxito</span>
+                </div>
+            @endif
+            
             <div class="flex justify-center mb-4 w-full">
                 <h2 class="font-bold text-white text-2xl mr-2">Perfil</h2>
             </div>

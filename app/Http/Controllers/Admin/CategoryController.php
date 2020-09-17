@@ -48,18 +48,25 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:191',
+            'description' => 'required|string',
+            'image' => 'required|image',
+        ]);
+
         $category = new Category($request->only(
             [
                 'name', 'description'
             ]
         ));
-
-        $category->image=basename(Storage::put('categories-icon', $request->image));
+        if ($request->hasFile('image')) {
+            $category->image=basename(Storage::put('categories-icon', $request->image));
+        }
 
         $category->save();
 
 
-        // $request->session()->flash('cat_stored', true);
+        $request->session()->flash('cat_stored', true);
         return redirect()->route('admin.categories.show', $category->id);
     }
 
@@ -96,6 +103,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string|max:191',
+            'description' => 'required|string',
+            'image' => 'nullable|image',
+        ]);
+
         $category = Category::findOrFail($id);
 
         $category->fill($request->only(
@@ -110,6 +123,7 @@ class CategoryController extends Controller
 
         $category->save();
 
+        $request->session()->flash('cat_updated', true);
         return redirect()->route('admin.categories.show', $category->id);
     }
 

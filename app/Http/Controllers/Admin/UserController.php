@@ -65,6 +65,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'user_name' => 'required|string|max:191|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'first_name' => 'required|string|max:191',
+            'last_name' => 'required|string|max:191',
+            'age' => 'required|int',
+            'role_id' => 'required|int',
+            'image' => 'nullable|image',
+        ]);
+
         $users = new User($request->only([
             'email',
             'first_name',
@@ -81,7 +92,8 @@ class UserController extends Controller
         $users->role_id = $request->role_id;
         $users->save();
 
-        return redirect()->route('admin.users.show', $users->id);
+        $request->session()->flash('user_created', true);
+        return redirect()->route('admin.users.edit', $users->id);
     }
 
     /**
@@ -107,8 +119,18 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         Role::findOrFail($request->role_id);
-
         $users = User::findOrFail($id);
+
+        $request->validate([
+            'user_name' => 'required|string|max:191',
+            'email' => 'required|string|email|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+            'first_name' => 'required|string|max:191',
+            'last_name' => 'required|string|max:191',
+            'age' => 'required|int',
+            'role_id' => 'required|int',
+            'image' => 'nullable|image',
+        ]);
 
         $users->fill($request->only([
             'email',
@@ -128,7 +150,7 @@ class UserController extends Controller
         $users->role_id = $request->role_id;
         $users->save();
 
-
+        $request->session()->flash('user_edited', true);
         return redirect()->route('admin.users.edit', $users->id);
     }
 

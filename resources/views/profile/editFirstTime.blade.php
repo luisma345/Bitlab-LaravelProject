@@ -28,7 +28,7 @@
 
                 <div class="block text-center pb-2">
                     <label class="text-white" for="first_name">Nombre</label><br>
-                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded" type="text" name="first_name" value="{{ old('first_name') }}" required  autofocus>
+                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded" type="text" name="first_name" value="{{ old('first_name') }}"   autofocus>
                 </div>
                 <div class="block text-center">
                     @error('first_name')
@@ -41,7 +41,7 @@
 
                 <div class="block text-center pb-2">
                     <label class="text-white" for="last_name">Apellido</label><br>
-                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded" type="text" name="last_name" value="{{ old('last_name') }}" required>
+                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded" type="text" name="last_name" value="{{ old('last_name') }}" >
                 </div>
                 <div class="block text-center">
                     @error('last_name')

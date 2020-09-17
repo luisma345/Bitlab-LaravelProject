@@ -15,6 +15,7 @@
             @endif
             <form action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data" class="w-full">
                 @csrf
+                
                 <div class="flex justify-center mb-4">
                     <div class="block w-10/12">
                         <div class="flex justify-center">
@@ -22,7 +23,7 @@
                         </div>
                         <div class="flex justify-center">
                             <input type="text" name="title" value="{{ old('title')}}"
-                                class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-full">
+                                class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-full" required autofocus>
                         </div>
                         @error('title')
                             <div class="text-red-800 text-center">{{ $message }}</div>
@@ -35,7 +36,7 @@
                             <label for="description" class="font-bold text-white mb-2">Descripción de la noticia:</label><br>
                         </div>
                         <textarea name="description" rows="4" cols="75"
-                        class="bg-white px-4 py-1 border-2 border-black border-solid rounded">{{ old('description')}}</textarea>
+                        class="bg-white px-4 py-1 border-2 border-black border-solid rounded" required>{{ old('description')}}</textarea>
                         @error('description')
                             <div class="text-red-800 text-center">{{ $message }}</div>
                         @enderror
@@ -46,9 +47,7 @@
                         <div class="flex justify-center">
                             <label for="article" class="font-bold text-white mb-2">Artículo:</label><br>
                         </div>
-                        {{-- <textarea name="article" rows="25" cols="75" value="{{ old('article')}}"
-                        class="ckeditor bg-white px-4 py-1 border-2 border-black border-solid rounded"></textarea> --}}
-                        <textarea name="article" class="ckeditor">{{ old('article')}}</textarea>
+                        <textarea name="article" class="ckeditor" required>{{ old('article')}}</textarea>
                         @error('article')
                             <div class="text-red-800 text-center">{{ $message }}</div>
                         @enderror
@@ -62,7 +61,7 @@
                         <div class="flex justify-center">
                             <input type="text" name="publication_date" id="publication_date" value="{{ old('publication_date') }}"
                                 class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2" 
-                                placeholder="Seleccione una fecha">
+                                placeholder="Seleccione una fecha" required>
                         </div>
                         @error('publication_date')
                             <div class="text-red-800 text-center">{{ $message }}</div>
@@ -75,7 +74,7 @@
                             <label for="article" class="font-bold text-white mb-2">Categoría:</label><br>
                         </div>
                         <div class="flex justify-center">
-                            <select name="category_id" id="" class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2">
+                            <select name="category_id" id="" class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2" required>
                                 <option value="">Seleccione una categoría</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
@@ -95,7 +94,10 @@
                             <label for="image" class="font-bold text-white">Imagen de Referencia: </label><br>
                         </div>
                         <input type="file" name="image" accept="image/*" 
-                                class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2">
+                                class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2" required>
+                        @error('image')
+                            <div class="text-red-800 text-center">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 

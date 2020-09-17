@@ -18,7 +18,10 @@
                         </div>
                         <input type="text" name="name" 
                                 class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2"
-                                value="{{$category->name}}">
+                                value="{{ old('name', $category->name)}}" required autofocus>
+                        @error('name')
+                            <div class="text-red-800 text-center">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="flex justify-center mb-4">
@@ -26,7 +29,10 @@
                         <div class="flex justify-center">
                             <label for="name" class="font-bold text-white mb-2">Descripción de la categoría:</label><br>
                         </div>
-                    <textarea name="description" rows="4" cols="25" class="bg-white px-4 py-1 border-2 border-black border-solid rounded">{{$category->description}}</textarea>
+                    <textarea name="description" rows="4" cols="25" class="bg-white px-4 py-1 border-2 border-black border-solid rounded" required>{{ old('description', $category->description)}}</textarea>
+                    @error('description')
+                        <div class="text-red-800 text-center">{{ $message }}</div>
+                    @enderror
                     </div>
                 </div>
 
@@ -45,6 +51,9 @@
 
                         <input type="file" name="image" accept="image/*" 
                                 class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2">
+                        @error('image')
+                            <div class="text-red-800 text-center">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 

@@ -5,6 +5,21 @@
 @section('h1','Título de la Noticia: '.$news->title)
 
 @section('content')
+
+    {{-- CREATED MESSAGE --}}
+    @if (session('news_created'))
+        <div class="flex justify-center mb-4 w-full">
+            <span class="border border-green-500 p-1 text-center text-green-500">Noticia creada con éxito</span>
+        </div>
+    @endif
+
+    {{-- EDITED MESSAGE --}}
+    @if (session('news_edited'))
+        <div class="flex justify-center mb-4 w-full">
+            <span class="border border-green-500 p-1 text-center text-green-500">Noticia editada con éxito</span>
+        </div>
+    @endif
+
     <div class="flex justify-center mt-8 pr-4">
         <div class="block">
                 <div class="flex justify-center mb-4">

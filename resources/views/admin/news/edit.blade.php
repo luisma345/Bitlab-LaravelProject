@@ -10,59 +10,77 @@
             <form action="{{ route('admin.news.update', $news->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="_method" value="PUT">
-                
-                <div class="flex justify-center mb-4">
-                    <div class="block">
-                        <div class="flex justify-center">
-                            <label for="title" class="font-bold text-white">Título de la noticia:</label><br>
-                        </div>
-                        <input type="text" name="title" class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2"
-                        value="{{ $news->title }}">
+
+            <div class="flex justify-center mb-4">
+                <div class="block w-10/12">
+                    <div class="flex justify-center">
+                        <label for="title" class="font-bold text-white">Título de la noticia:</label><br>
                     </div>
-                </div>
-                <div class="flex justify-center mb-4">
-                    <div class="block">
-                        <div class="flex justify-center">
-                            <label for="description" class="font-bold text-white mb-2">Descripción de la noticia:</label><br>
-                        </div>
-                        <textarea name="description" rows="4" cols="75" class="bg-white px-4 py-1 border-2 border-black border-solid rounded"
-                        >{{ $news->description}}</textarea>
+                    <div class="flex justify-center">
+                        <input type="text" name="title" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-full"
+                            value="{{ old('title', $news->title) }}" required autofocus>
                     </div>
+                    @error('title')
+                        <div class="text-red-800 text-center">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="flex justify-center mb-4">
-                    <div class="block w-full">
-                        <div class="flex justify-center">
-                            <label for="article" class="font-bold text-white mb-2">Artículo:</label><br>
-                        </div>
-                        <textarea name="article" rows="25" cols="75" class="ckeditor"
-                        >{{ $news->article }}</textarea>
+            </div>
+            <div class="flex justify-center mb-4">
+                <div class="block">
+                    <div class="flex justify-center">
+                        <label for="description" class="font-bold text-white mb-2">Descripción de la noticia:</label><br>
                     </div>
+                    <textarea name="description" rows="4" cols="75"
+                    class="bg-white px-4 py-1 border-2 border-black border-solid rounded" required>{{ old('description',$news->description)}}</textarea>
+                    @error('description')
+                        <div class="text-red-800 text-center">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="flex justify-center mb-4">
-                    <div class="block">
-                        <div class="flex justify-center">
-                            <label for="publication_date" class="font-bold text-white">Fecha a publicar</label><br>
-                        </div>
-                        <input type="text" name="publication_date" id="publication_date" 
-                                class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2" 
-                                placeholder="Seleccione una fecha"
-                                value="{{ $news->publication_date }}">
+            </div>
+            <div class="flex justify-center mb-4 w-full">
+                <div class="block w-full">
+                    <div class="flex justify-center">
+                        <label for="article" class="font-bold text-white mb-2">Artículo:</label><br>
                     </div>
+                    <textarea name="article" class="ckeditor" required>{{ old('article', $news->article)}}</textarea>
+                    @error('article')
+                        <div class="text-red-800 text-center">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="flex justify-center mb-4">
-                    <div class="block">
-                        <div class="flex justify-center">
-                            <label for="article" class="font-bold text-white mb-2">Categoría:</label><br>
-                        </div>
-                        <select name="category_id" id="" class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2">
+            </div>
+            <div class="flex justify-center mb-4">
+                <div class="block">
+                    <div class="flex justify-center">
+                        <label for="publication_date" class="font-bold text-white">Fecha a publicar</label><br>
+                    </div>
+                    <div class="flex justify-center">
+                        <input type="text" name="publication_date" id="publication_date" value="{{ old('publication_date', $news->publication_date) }}"
+                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2" 
+                            placeholder="Seleccione una fecha" required>
+                    </div>
+                    @error('publication_date')
+                        <div class="text-red-800 text-center">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="flex justify-center mb-4">
+                <div class="block">
+                    <div class="flex justify-center">
+                        <label for="article" class="font-bold text-white mb-2">Categoría:</label><br>
+                    </div>
+                    <div class="flex justify-center">
+                        <select name="category_id" id="" class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2" required>
                             <option value="">Seleccione una categoría</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ $news->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" {{ old('category_id',$news->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
+                    @error('category_id')
+                        <div class="text-red-800 text-center">{{ $message }}</div>
+                    @enderror
                 </div>
-                <br>
+            </div>
 
                 {{-- Image --}}
                 <div class="flex justify-center mb-4">
@@ -89,6 +107,9 @@
                         @endif
                         <input type="file" name="image" accept="image/*" 
                                 class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2">
+                        @error('image')
+                                <div class="text-red-800 text-center">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 

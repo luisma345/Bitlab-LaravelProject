@@ -27,9 +27,6 @@ class NewsController extends Controller
      */
     public function index(Request $request)
     {
-        // $news=News::withCount('comments','readingHistories')
-        //     ->orderBy('publication_date', 'DESC')
-        //     ->get();
         $query=News::query();
         if(!is_null($request->keyword)){
             $query->where(
@@ -73,6 +70,7 @@ class NewsController extends Controller
             'article' => 'required|string',
             'publication_date'=>'required|date',
             'category_id'=>'required|integer',
+            'image' => 'required|image',
         ]);
 
 
@@ -88,10 +86,13 @@ class NewsController extends Controller
 
         $news->writer = auth()->user()->id; 
         $news->category_id = $request->category_id;
-        $news->image=basename(Storage::put('news-images', $request->image));
+        if ($request->hasFile('image')) {
+            $news->image=basename(Storage::put('news-images', $request->image));
+        }
 
         $news->save();
 
+        $request->session()->flash('news_created', true);
         return redirect()->route('admin.news.show', $news->id);
     }
 
@@ -130,6 +131,15 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|string|max:191',
+            'description' => 'required|string',
+            'article' => 'required|string',
+            'publication_date'=>'required|date',
+            'category_id'=>'required|integer',
+            'image' => 'nullable|image',
+        ]);
+
         $news = News::findOrFail($id);
 
         $news->fill($request->all());
@@ -139,6 +149,7 @@ class NewsController extends Controller
         }
         $news->save();
 
+        $request->session()->flash('news_edited', true);
         return redirect()->route('admin.news.show', $news->id);
     }
 
