@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::select('id', 'name', 'description', 'image')->get();
+        $categories = Category::select('id', 'name', 'description', 'image', 'slug')->get();
         return view('categories.index', ['menu'=>'category'], compact('categories'));
     }
 
@@ -27,9 +27,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $category=Category::findOrFail($id);
+        $category=Category::where('slug',$slug)->firstOrFail();
         
         $query=News::query();
         if (!Auth::guest()) {

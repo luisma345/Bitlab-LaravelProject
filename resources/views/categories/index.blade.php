@@ -19,7 +19,7 @@
     @else
         @foreach($categories as $category)
             <div class="md:flex md:justify-center p-2">
-                    <a href="{{ route('categories.show', $category->id) }}" 
+                    <a href="{{ route('categories.show', $category->slug) }}" 
                         class="flex items-center bg-white p-4 w-full md:w-1/2 rounded 
                                 hover:bg-blue-800 hover:text-white">
                         

@@ -72,7 +72,7 @@
                                 <div class="flex items-center">
                                     Categoría:
                                 </div>
-                                <a href="{{ route('categories.show', $news->category_id) }}" class="flex text-white mx-2 py-1 hover:text-red-800 underline">
+                                <a href="{{ route('categories.show', $news->category->slug) }}" class="flex text-white mx-2 py-1 hover:text-red-800 underline">
                                     <div class="flex items-center">
                                         {{$news->category->name}}
                                     </div>
