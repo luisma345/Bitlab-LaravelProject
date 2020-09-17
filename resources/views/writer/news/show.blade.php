@@ -146,7 +146,7 @@
                                     <div class="flex justify-center">
                                         <label for="content" class="font-bold text-white mb-2">Agrega un comentario:</label><br>
                                     </div>
-                                    <textarea name="content" rows="4" cols="75" class="bg-white px-4 py-1 border-2 border-black border-solid rounded" placeholder="Agrega un comentario"></textarea>
+                                    <textarea name="content" rows="4" cols="75" class="bg-white px-4 py-1 border-2 border-black border-solid rounded" placeholder="Agrega un comentario" required></textarea>
                                     <div class="flex justify-center">
                                         @error('content')
                                             <span class="text-red-800 text-sm" role="alert">

@@ -171,9 +171,9 @@ class NewsController extends Controller
             
         News::findOrFail($request->news_id);
         
-        // $request->validate([
-        //         'content' => 'required|string',
-        // ]);
+        $request->validate([
+                'content' => 'required|string',
+        ]);
 
         
 
