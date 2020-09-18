@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -160,17 +161,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        Comment::where('made_by', $id)->delete();
         User::destroy($id);
 
+        $request->session()->flash('user_destroyed', true);
         return redirect()->route('admin.users.edit', $id);
     }
 
-    public function restore($id)
+    public function restore(Request $request, $id)
     {
         User::withTrashed()->where('id',$id)->restore();
+        Comment::withTrashed()->where('made_by', $id)->restore();
 
+        $request->session()->flash('user_restored', true);
         return redirect()->route('admin.users.edit', $id);
     }
 }

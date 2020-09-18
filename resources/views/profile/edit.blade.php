@@ -12,7 +12,7 @@
             <form action="{{ route('profile.update', auth()->user()->user_name) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
-                
+
                 @if (!is_null(auth()->user()->image))
                 <div class="flex justify-center mb-4">
                     <div class="w-24">
@@ -163,7 +163,7 @@
                 </div>
             </form>
             <div class="flex justify-center mt-4">
-                <a href="{{ route('profile.show', auth()->user()->id) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                <a href="{{ route('profile.show', auth()->user()->user_name) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>

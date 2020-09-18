@@ -5,6 +5,12 @@
 
 
 @section('content')
+    {{-- CREATED MESSAGE --}}
+    @if (session('cat_destroy'))
+        <div class="flex justify-center mb-4 w-full">
+            <span class="border border-green-500 p-1 text-center text-green-500">Categoría eliminada con éxito</span>
+        </div>
+    @endif
     <div class="flex justify-center mt-8">
         @include('partials.ui.linkButton', ['label' => 'Crear categoría', 'url' => route('admin.categories.create')])
     </div>

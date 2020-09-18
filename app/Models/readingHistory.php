@@ -3,9 +3,11 @@
 namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class readingHistory extends Model
 {
+    use SoftDeletes;
     /**
      * The primary key for the model.
      *

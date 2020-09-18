@@ -19,6 +19,20 @@
         </div>
     @endif
 
+    {{-- DESTROYED MESSAGE --}}
+    @if (session('user_destroyed'))
+        <div class="flex justify-center mb-4 w-full">
+            <span class="border border-green-500 p-1 text-center text-green-500">Usuario desactivado con éxito</span>
+        </div>
+    @endif
+
+    {{-- RESTORED MESSAGE --}}
+    @if (session('user_restored'))
+        <div class="flex justify-center mb-4 w-full">
+            <span class="border border-green-500 p-1 text-center text-green-500">Usuario reactivado con éxito</span>
+        </div>
+    @endif
+
     <div class="flex justify-center mt-8">
         <div class="block">
             <form action="{{ route('admin.users.update', $users->id) }}" method="POST" enctype="multipart/form-data">

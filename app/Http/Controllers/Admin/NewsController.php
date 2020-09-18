@@ -159,9 +159,10 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         News::destroy($id);
+        $request->session()->flash('news_deleted', true);
         return redirect()->route('admin.news.index');
     }
 

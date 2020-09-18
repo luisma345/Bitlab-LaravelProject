@@ -49,10 +49,10 @@
                         </div>
                         <div class="flex justify-center mt-4">
                             <form action="{{ route('admin.categories.destroy', $category->id) }}" 
-                                method="POST" class="mb-4" onsubmit="return confirm('¿Realmente quieres eliminar esta categoría?');">
+                                method="POST" class="mb-4" onsubmit="return confirm('¿Realmente quieres eliminar esta categoría y sus noticias?');">
                                 @csrf
                                 @method('DELETE')
-                                @include('partials.ui.redButton', ['label' => 'Eliminar Categoría'])
+                                @include('partials.ui.redButton', ['label' => 'Eliminar Categoría y sus Noticias'])
                             </form>
                         </div>
                         <div class="flex justify-center mt-4">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\News;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -133,10 +134,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        News::where('category_id', $id)->delete();
         Category::destroy($id);
 
+        $request->session()->flash('cat_destroy', true);
         return redirect()->route('admin.categories.index');
     }
 }

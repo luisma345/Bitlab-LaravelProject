@@ -5,6 +5,12 @@
 
 
 @section('content')
+{{-- CREATED MESSAGE --}}
+@if (session('news_deleted'))
+    <div class="flex justify-center mb-4 w-full">
+        <span class="border border-green-500 p-1 text-center text-green-500">Noticia eliminada correctamente</span>
+    </div>
+@endif
     <div class="flex justify-center mt-4">
         @include('partials.ui.linkButton', ['label' => 'Crear Noticia', 'url' => route('admin.news.create')])
     </div>
