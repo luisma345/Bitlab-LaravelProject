@@ -39,6 +39,7 @@ Route::prefix('news')->name('news.')->group(
                 Route::get('', [NewsController::class, 'show'])->name('show');
                 Route::put('liked', [NewsController::class, 'likeNews'])->name('liked');
                 Route::put('unliked', [NewsController::class, 'unlikeNews'])->name('unliked');
+                Route::delete('deleteComent', [NewsController::class, 'deleteComent'])->name('deleteComent');
             }
         );
     }

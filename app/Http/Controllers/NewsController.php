@@ -84,8 +84,16 @@ class NewsController extends Controller
 
         $comment->save();
         
-        $new = News::where('id',$comment->news_id)->firstOrFail();
+        $news = News::where('id',$comment->news_id)->firstOrFail();
 
-        return redirect()->route('news.show', $new->slug);
+        return redirect()->route('news.show', $news->slug);
+    }
+    public function deleteComent(Request $request, $id)
+    {
+        $comment = Comment::findOrFail($id);
+        Comment::where('id', $id)->where('made_by', auth()->id())->delete();
+
+        $news = News::where('id',$comment->news_id)->firstOrFail();
+        return redirect()->route('news.show', $news->slug);
     }
 }

@@ -144,6 +144,14 @@
                                                 {{ $comment->user->user_name }}
                                             @endif
                                         </span>
+                                        @if (auth()->id() == $comment->made_by)
+                                            <form action="{{ route('news.deleteComent', $comment->id) }}" 
+                                                method="POST" class="mt-4" onsubmit="return confirm('¿Realmente quieres eliminar este comentario?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                @include('partials.ui.redButton', ['label' => 'Eliminar Comentario'])
+                                            </form>
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>
