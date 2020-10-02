@@ -11,24 +11,24 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body class="bg-black">
+<body class="bg-white">
     <div class="flex justify-center h-screen">
         <div class="flex flex-col justify-center items-center w-full">
-        <form class="bg-gray-900 p-4 rounded" action="{{ route('profile.updateFirstTime') }}" method="POST" enctype="multipart/form-data">
+        <form class="rounded-lg border-blue-800 border-2 p-4 rounded" action="{{ route('profile.updateFirstTime') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
 
                 <div class="flex justify-center mb-2">
-                    <img src="{{ asset('img/logo/TechNewsLogo.png') }}" alt="Logo TecNews" width="100px" height="43px" class="p-1 bg-white rounded">
+                    <img src="{{ asset('img/logo/TechNewsLogo.png') }}" alt="Logo TecNews" width="150px" class="p-1">
                 </div>
                 <div class="block text-center pb-2">
-                    <span class="text-white font-bold">Completar Registro</span>
+                    <span class="font-bold text-xl">Completar Registro</span>
                 </div>
 
 
                 <div class="block text-center pb-2">
-                    <label class="text-white" for="first_name">Nombre</label><br>
-                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded" type="text" name="first_name" value="{{ old('first_name') }}"   autofocus>
+                    <label class="font-bold text-lg" for="first_name">Nombre</label><br>
+                    <input class="bg-white px-4 py-1 border-2 border-black border-solid roboto text-lg rounded" type="text" name="first_name" value="{{ old('first_name') }}"   autofocus>
                 </div>
                 <div class="block text-center">
                     @error('first_name')
@@ -40,8 +40,8 @@
 
 
                 <div class="block text-center pb-2">
-                    <label class="text-white" for="last_name">Apellido</label><br>
-                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded" type="text" name="last_name" value="{{ old('last_name') }}" >
+                    <label class="font-bold text-lg" for="last_name">Apellido</label><br>
+                    <input class="bg-white px-4 py-1 border-2 border-black border-solid roboto text-lg rounded" type="text" name="last_name" value="{{ old('last_name') }}" >
                 </div>
                 <div class="block text-center">
                     @error('last_name')
@@ -53,8 +53,8 @@
 
 
                 <div class="block text-center pb-2">
-                    <label class="text-white" for="image">Foto de Perfil (Opcional)</label><br>
-                    <input type="file" name="image" accept="image/*" class="bg-white px-4 py-1 border-2 border-black border-solid rounded w-64">
+                    <label class="font-bold text-lg" for="image">Foto de Perfil (Opcional)</label><br>
+                    <input type="file" name="image" accept="image/*" class="bg-white px-4 py-1 border-2 border-black border-solid roboto text-lg rounded w-64">
                 </div>
                 <div class="block text-center">
                     @error('image')
@@ -65,9 +65,9 @@
                 </div>
                 
                 <div class="text-center mt-2">
-                    <button class="bg-red-800 text-white p-2 
-                                border-2 border-black border-solid rounded 
-                                hover:bg-white hover:text-red-800 hover:font-bold">
+                    <button class="hover:bg-red-800 hover:text-white hover:font-normal p-2 
+                                    border-2 border-red-800 border-solid rounded 
+                                    bg-white text-red-800 font-bold">
                                 Completar Registro
                     </button>
                 </div>

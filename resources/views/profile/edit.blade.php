@@ -7,7 +7,7 @@
     <div class="flex justify-center mt-8">
         <div class="block">
             <div class="flex justify-center mb-4 w-full">
-                <h2 class="font-bold text-white text-2xl mr-2">Editar Perfil</h2>
+                <h2 class="font-bold  text-2xl mr-2">Editar Perfil</h2>
             </div>
             <form action="{{ route('profile.update', auth()->user()->user_name) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -24,7 +24,7 @@
                 {{-- UPDATE USERNAME --}}
                 <div class="flex mb-4 w-full">
                      <div class="flex justify-end items-center w-5/12">
-                        <label for="user_name" class="font-bold text-white mr-2">Actualizar Usuario:</label>
+                        <label for="user_name" class="font-bold  mr-2">Actualizar Usuario:</label>
                     </div>
                     <div class="w-7/12">
                             <input type="user_name" name="user_name" 
@@ -43,7 +43,7 @@
                 {{-- UPDATE EMAIL --}}
                 <div class="flex mb-4 w-full">
                     <div class="flex justify-end items-center w-5/12">
-                       <label for="email" class="font-bold text-white mr-2">Actualizar Correo:</label>
+                       <label for="email" class="font-bold  mr-2">Actualizar Correo:</label>
                    </div>
                    <div class="w-7/12">
                            <input type="email" name="email" 
@@ -62,21 +62,21 @@
                {{-- UPDATE PASSWORD --}}
                 <div class="flex mb-4 w-full">
                     <div class="flex justify-end items-center w-5/12">
-                       <label for="password" class="font-bold text-white mr-2">Actualizar Contraseña:</label>
+                       <label for="password" class="font-bold  mr-2">Actualizar Contraseña:</label>
                    </div>
                    <div class="w-7/12">
                            <input type="password" name="password" 
-                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold"
+                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold roboto text-lg"
                             value="{{ old('password') }}">
                    </div>
                </div>
                <div class="flex mb-4 w-full">
                     <div class="flex justify-end items-center w-5/12">
-                        <label for="password" class="font-bold text-white mr-2">Confirmar Contraseña:</label>
+                        <label for="password" class="font-bold  mr-2">Confirmar Contraseña:</label>
                     </div>
                     <div class="w-7/12">
                             <input type="password" name="password_confirmation"
-                                class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold">
+                                class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold roboto text-lg">
                     </div>
                 </div>
                 @error('password')
@@ -90,11 +90,11 @@
                 {{-- UPDATE FIRST NAME --}}
                 <div class="flex mb-4 w-full">
                     <div class="flex justify-end items-center w-5/12">
-                       <label for="first_name" class="font-bold text-white mr-2">Actualizar Nombre:</label>
+                       <label for="first_name" class="font-bold  mr-2">Actualizar Nombre:</label>
                    </div>
                    <div class="w-7/12">
                            <input type="text" name="first_name" 
-                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold"
+                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold roboto text-lg"
                             value="{{ old('first_name', auth()->user()->first_name) }}" required>
                    </div>
                </div>
@@ -109,11 +109,11 @@
                 {{-- UPDATE LAST NAME --}}
                 <div class="flex mb-4 w-full">
                     <div class="flex justify-end items-center w-5/12">
-                       <label for="last_name" class="font-bold text-white mr-2">Actualizar Apellido:</label>
+                       <label for="last_name" class="font-bold  mr-2">Actualizar Apellido:</label>
                    </div>
                    <div class="w-7/12">
                            <input type="text" name="last_name" 
-                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold"
+                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold roboto text-lg"
                             value="{{ old('last_name', auth()->user()->last_name) }}" >
                    </div>
                </div>
@@ -128,11 +128,11 @@
                 {{-- UPDATE AGE --}}
                <div class="flex mb-4 w-full">
                     <div class="flex justify-end items-center w-5/12">
-                        <label for="age" class="font-bold text-white mr-2">Actualizar Edad:</label>
+                        <label for="age" class="font-bold  mr-2">Actualizar Edad:</label>
                     </div>
                     <div class="w-7/12">
                             <input type="number" name="age" min="0" max="100" 
-                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold"
+                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold roboto text-lg"
                             value="{{ old('age', auth()->user()->age) }}" required>
                     </div>
                 </div>
@@ -150,11 +150,11 @@
                 {{-- UPDATE PROFILE PICTURE --}}
                 <div class="flex mb-4 w-full">
                     <div class="flex justify-end items-center w-5/12">
-                       <label for="last_name" class="font-bold text-white mr-2">Actualizar Foto de Perfil:</label>
+                       <label for="last_name" class="font-bold  mr-2">Actualizar Foto de Perfil:</label>
                    </div>
                    <div class="w-7/12">
                             <input type="file" name="image" accept="image/*" 
-                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-4/5">
+                            class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-4/5 roboto text-lg">
                    </div>
                </div>
                
@@ -163,7 +163,7 @@
                 </div>
             </form>
             <div class="flex justify-center mt-4">
-                <a href="{{ route('profile.show', auth()->user()->user_name) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                <a href="{{ route('profile.show', auth()->user()->user_name) }}" class="font-bold hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>

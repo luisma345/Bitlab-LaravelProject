@@ -27,9 +27,8 @@
         @foreach($categories as $category)
             <div class="md:flex md:justify-center p-2">
                     <a href="{{ route('admin.categories.show', $category->id) }}" 
-                        class="flex items-center bg-white p-4 w-full md:w-1/2 rounded 
-                                hover:bg-blue-800 hover:text-white">
-                        
+                        class="flex items-center bg-white p-4 w-full md:w-1/2 rounded-lg border-blue-800 border-2 
+                                hover:bg-blue-800 hover:text-white font-bold hover:font-normal">
                         <img 
                             @if (!is_null($category->image))
                                 src="{{ asset("storage/categories-icon/{$category->image}")}}"
@@ -37,7 +36,7 @@
                                 src="{{ asset('img/logo/TechNewsLogo-Brujula.png') }}"
                             @endif
                         alt="Tech News Logo" class="w-8 rounded-full">
-                        <span class="font-bold ml-2"> -> {{ $category->name }} </span>
+                        <span class="ml-2 text-xl"> -> {{ $category->name }} </span>
                     </a>
             </div>
         @endforeach

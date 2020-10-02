@@ -185,6 +185,6 @@ class NewsController extends Controller
 
         $comment->save();
 
-        return redirect()->route('admin.news.show', $comment->news_id);
+        return redirect()->route('writer.news.show', $comment->news_id);
     }
 }

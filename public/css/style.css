@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 *{
     font-family: 'Orbitron', sans-serif;
+}
+
+.roboto{
+    font-family: 'Roboto', sans-serif;
+}
+
+p{
+    font-family: 'Roboto', sans-serif;
+}
+p a{
+    font-family: 'Roboto', sans-serif;
+    color: blue;
+    text-decoration: underline;
 }

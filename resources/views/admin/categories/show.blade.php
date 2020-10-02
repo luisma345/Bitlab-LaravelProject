@@ -30,17 +30,17 @@
                             </div>
                         @endif
                         <div class="flex justify-center">
-                            <span for="name" class="font-bold text-white mb-2 underline">Descripción de la categoría:</span><br>
+                            <span for="name" class="font-bold text-lg mb-2 underline">Descripción de la categoría:</span><br>
                         </div>
-                        <p class="text-white px-4 py-1 border-2 border-black border-solid rounded">
+                        <p class="text-lg px-4 py-1 border-2 border-black border-solid rounded">
                             {{$category->description}}
                         </p>
                         <br>
 
                         <div class="flex justify-center">
-                            <span for="name" class="text-white mb-2 underline">Cantidad de Noticias:</span><br>
+                            <span for="name" class="text-lg font-bold mb-2 underline">Cantidad de Noticias:</span><br>
                         </div>
-                        <p class="text-white text-center px-4 py-1 border-2 border-black border-solid rounded">
+                        <p class="text-lg text-center px-4 py-1 border-2 border-black border-solid rounded">
                             {{$category->news_count}}
                         </p>
 
@@ -57,7 +57,7 @@
                         </div>
                         <div class="flex justify-center mt-4">
                             <a href="{{ url()->previous() == route('admin.categories.edit', $category->id) ? route('admin.categories.index') : url()->previous() }}" 
-                                class="text-white hover:text-red-800 underline">← Regresar</a>
+                                class="font-bold text-blue-800 hover:text-red-800 underline">← Regresar</a>
                         </div>
                     </div>
                 </div>

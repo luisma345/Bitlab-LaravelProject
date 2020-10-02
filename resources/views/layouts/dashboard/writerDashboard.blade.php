@@ -18,20 +18,20 @@
     {{-- ckeditor --}}
     <script src="{{ asset('/vendor/ckeditor/ckeditor.js') }}"></script>
 </head>
-<body class="bg-black">
+<body class="bg-white">
     @include('partials.navbar.navbar',['menu'=>'dashboardWriter'])
     
     <div class="flex w-auto">
         
         <div class="flex fixed justify-center w-1/6 pt-4">
             <div class="flex items-start mt-4 h-screen">
-                <div class="bg-gray-800 rounded p-4">
-                    <span class="text-2xl text-white">Gestionar:</span>
+                <div class="rounded-lg border-blue-800 border-2 p-4">
+                    <span class="text-2xl">Gestionar:</span>
                     <a href="{{ route('writer.news.index') }}"
                     @if ( $option =='news')
-                        class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
+                        class='block mt-2 px-2 rounded text-white bg-red-800 border-red-800 border-2 rounded text-center'>
                     @else
-                        class='block mt-2 px-2 font-semibold rounded text-black bg-gray-200 
+                        class='block mt-2 px-2 font-semibold rounded text-black border-red-800 border-2
                         rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>
                     @endif
                     Mis Noticias</a>
@@ -41,7 +41,7 @@
         <div class="w-1/6"></div>
         <div class="w-5/6">
             <div class="container mx-auto mb-4">
-                <h1 class="text-2xl font-bold text-white my-4 text-center">@yield('h1','DASHBOARD')</h1>
+                <h1 class="text-2xl font-bold my-4 text-center">@yield('h1','DASHBOARD')</h1>
                 @yield('content')
             </div>
         </div>

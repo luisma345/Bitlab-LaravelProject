@@ -14,7 +14,7 @@
                 <div class="flex justify-center mb-4">
                     <div class="block">
                         <div class="flex justify-center">
-                            <label for="name" class="font-bold text-white">Nombre de la categoría:</label><br>
+                            <label for="name" class="font-bold text-lg">Nombre de la categoría:</label><br>
                         </div>
                         <input type="text" name="name" 
                                 class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2"
@@ -27,9 +27,9 @@
                 <div class="flex justify-center mb-4">
                     <div class="block">
                         <div class="flex justify-center">
-                            <label for="name" class="font-bold text-white mb-2">Descripción de la categoría:</label><br>
+                            <label for="name" class="font-bold text-lg mb-2">Descripción de la categoría:</label><br>
                         </div>
-                    <textarea name="description" rows="4" cols="25" class="bg-white px-4 py-1 border-2 border-black border-solid rounded" required>{{ old('description', $category->description)}}</textarea>
+                    <textarea name="description" rows="4" cols="25" class="roboto text-lg bg-white px-4 py-1 border-2 border-black border-solid rounded" required>{{ old('description', $category->description)}}</textarea>
                     @error('description')
                         <div class="text-red-800 text-center">{{ $message }}</div>
                     @enderror
@@ -39,7 +39,7 @@
                 <div class="flex justify-center mb-4">
                     <div class="block">
                         <div class="flex justify-center">
-                            <label for="image" class="font-bold text-white">Icono de la categoría:</label><br>
+                            <label for="image" class="font-bold text-lg">Icono de la categoría:</label><br>
                         </div>
                         @if (!is_null($category->image))
                             <div class="flex justify-center mb-4">
@@ -62,7 +62,7 @@
                 </div>
             </form>
             <div class="flex justify-center mt-4">
-                <a href="{{ route('admin.categories.show', $category->id) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                <a href="{{ route('admin.categories.show', $category->id) }}" class="font-bold text-blue-800 hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>

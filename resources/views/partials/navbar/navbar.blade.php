@@ -1,6 +1,6 @@
 {{-- NAVBAR --}}
 <div class="flex">
-    <div class="bg-white md:flex md:justify-between md:px-2 md:py-1 md:items-center w-screen">
+    <div class="bg-white md:flex md:justify-between md:px-2 md:py-1 md:items-center w-screen rounded-b-lg border-blue-800 border-b-2">
         <div class="flex items-center justify-between px-2 py-1 md:px-0 md:py-0 md:w-full">
             <div class="flex items-center justify-center md:justify-start md:ml-2 w-full">
             <a href="{{ route('/') }}"><img class="h-12" src="{{ asset('img/logo/TechNewsLogo.png')}}" alt="Logo TECH NEWS"></a>

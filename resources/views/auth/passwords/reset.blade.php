@@ -11,22 +11,22 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 </head>
-<body class="bg-black">
+<body class="bg-white">
     <div class="flex justify-center h-screen">
         <div class="flex flex-col justify-center items-center w-full">
-        <form class="bg-gray-900 p-4 rounded" action="{{ route('password.update') }}" method="POST">
+        <form class="rounded-lg border-blue-800 border-2 p-4 rounded" action="{{ route('password.update') }}" method="POST">
                 @csrf
                 <input type="hidden" name="token" value="{{ $token }}">
                 <div class="flex justify-center mb-2">
-                    <img src="{{ asset('img/logo/TechNewsLogo.png')}}" alt="Logo TecNews" width="100px" height="43px" class="p-1 bg-white rounded">
+                    <img src="{{ asset('img/logo/TechNewsLogo.png')}}" alt="Logo TecNews" width="150px" class="p-1">
                 </div>
                 <div class="flex justify-center mb-2">
-                    <span class="text-white">Resetear Contraseña</span>
+                    <span class="font-bold text-xl">Resetear Contraseña</span>
                 </div>
 
                 <div class="text-center pb-2">
-                    <label class="text-white" for="email">Correo:</label><br>
-                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded" type="email" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                    <label class="font-bold text-lg" for="email">Correo:</label><br>
+                    <input class="bg-white px-4 py-1 border-2 border-black border-solid roboto text-lg rounded" type="email" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
                 </div>
                 <div class="text-center">
                     @error('email')
@@ -37,12 +37,12 @@
 
                 </div>
                 <div class="text-center">
-                    <label class="text-white" for="password">Nueva Contraseña:</label><br>
-                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold" type="password" name="password" required autocomplete="new-password">
+                    <label class="font-bold text-lg" for="password">Nueva Contraseña:</label><br>
+                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded roboto text-lg font-bold" type="password" name="password" required autocomplete="new-password">
                 </div> 
                 <div class="text-center">
-                    <label class="text-white" for="password">Confirmar Contraseña:</label><br>
-                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold" type="password" name="password_confirmation" required autocomplete="new-password">
+                    <label class="font-bold text-lg" for="password">Confirmar Contraseña:</label><br>
+                    <input class="bg-white px-4 py-1 border-2 border-black border-solid rounded roboto text-lg font-bold" type="password" name="password_confirmation" required autocomplete="new-password">
                 </div>
                 <div class="text-center">
                     @error('password')
@@ -54,9 +54,9 @@
                 
                   
                 <div class="text-center mt-4">
-                    <button class="bg-red-800 text-white p-2 
-                                border-2 border-black border-solid rounded 
-                                hover:bg-white hover:text-red-800 hover:font-bold">
+                    <button class="hover:bg-red-800 hover:text-white hover:font-normal p-2 
+                            border-2 border-red-800 border-solid rounded 
+                            bg-white text-red-800 font-bold">
                                 Resetar Contraseña
                     </button>
                 </div>
@@ -64,7 +64,7 @@
             </form>
             <br>
             <a href="{{ route('login')}}" 
-                class="text-white hover:text-red-800 underline">← Regresar a login</a>
+                class="font-bold hover:text-red-800 underline">← Regresar a login</a>
         </div>
     </div>
 </body>

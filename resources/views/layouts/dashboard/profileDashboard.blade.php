@@ -18,31 +18,31 @@
     {{-- ckeditor --}}
     <script src="{{ asset('/vendor/ckeditor/ckeditor.js') }}"></script>
 </head>
-<body class="bg-black">
+<body class="bg-white">
     @include('partials.navbar.navbar',['menu'=>'profile'])
     
     <div class="flex w-auto">
         
         <div class="flex fixed justify-center w-1/6 pt-4">
             <div class="flex items-start mt-4 h-screen">
-                <div class="bg-gray-800 rounded p-4">
+                <div class="rounded-lg border-blue-800 border-2 p-4">
                     <div class="flex justify-center">
-                        <span class="text-2xl text-white">Ver:</span>
+                        <span class="text-2xl font-bold">Ver:</span>
                     </div>
                     <a href="{{ route('profile.show', auth()->user()->id) }}"
                     @if ( $option =='profile')
-                        class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
+                        class='block mt-2 px-2 rounded text-white bg-red-800 border-red-800 border-2 rounded text-center'>
                     @else
-                        class='block mt-2 px-2 font-semibold rounded text-black bg-gray-200 
+                        class='block mt-2 px-2 font-semibold rounded text-black border-red-800 border-2 
                         rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>
                     @endif
                     Perfil</a>
                     
                     <a href="{{ route('profile.readingHistory') }}"
                     @if ( $option =='user_history')
-                        class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
+                        class='block mt-2 px-2 rounded text-white bg-red-800 border-red-800 border-2 rounded text-center'>
                     @else
-                        class='block mt-2 px-2 font-semibold rounded text-black bg-gray-200 
+                        class='block mt-2 px-2 font-semibold rounded text-black border-red-800 border-2
                         rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>
                     @endif
                         Historial</a>

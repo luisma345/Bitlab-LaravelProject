@@ -18,7 +18,7 @@
         <div class="block">
             <form action="{{ route('admin.news.index') }}" method="GET">
                 <div class="flex items-center w-full my-2">
-                    <h2 class="text-white text-xl font-bold mr-2">Buscar: </h2>
+                    <h2 class="text-xl font-bold mr-2">Buscar: </h2>
                     <input type="text" name="keyword" class="bg-white px-4 py-1 mr-2 border-2 border-black border-solid rounded font-bold w-full"
                             value="{{ request()->keyword }}">
                     @include('partials.ui.blueButton', ['label' => 'Buscar'])
@@ -34,24 +34,24 @@
                 <div class="flex justify-center">
                     <img class="block w-12 text-center" src="{{ asset('img/icons/alert.svg')}}" alt="Alert!">
                 </div>
-                <p class="block text-white text-sm">¡No encontramos resultados de tu búsqueda!</p>
+                <p class="block font-bold text-xl">¡No encontramos resultados de tu búsqueda!</p>
             </div>
         </div>
     @else
         @if (!is_null(request()->keyword))
             <div class="flex justify-center mt-2">
                 <a href="{{ route('admin.news.index') }}" 
-                    class="text-white hover:text-red-800 underline">← Limpiar busqueda</a>
+                    class="font-bold text-blue-800 hover:text-red-800 underline">← Limpiar busqueda</a>
             </div>
             <div class="flex justify-center mt-2">
-                <span class="text-white">Cantidad de resultados: {{$news->total() }}</span>
+                <span class="font-bold">Cantidad de resultados: {{$news->total() }}</span>
             </div>                
         @endif
         @foreach($news as $item)
             <div class="md:flex md:justify-center my-2">
                 <div class="w-full md:w-2/3">
                     <a href="{{ route('admin.news.show', $item->id) }}" 
-                        class="flex items-center bg-white p-2 w-full h-full rounded 
+                        class="flex items-center bg-white p-2 w-full h-full rounded-lg border-blue-800 border-2
                                 hover:bg-blue-800 hover:text-white">
                         <div class="block w-1/3">
                             <div class="flex justify-center pr-2 w-full">
@@ -103,17 +103,17 @@
     @endif
     <div class="flex justify-center my-8">
         <div class="block">
-            <div class="flex mt-1">
+            <div class="flex mt-1 font-bold text-lg">
                 @if ($news->hasPages())
-                    <span class="text-white mx-2">
+                    <span class="mx-2">
                         @if (!$news->onFirstPage())
                             <a href="{{ $news->previousPageUrl() }}" class="hover:text-red-800 underline" >←</a>
                         @else
                             ←
                         @endif
                     </span>
-                    <span class="text-white mx-2">Página {{ $news->currentPage() }}/{{$news->lastPage()}}</span>
-                    <span class="text-white mx-2">
+                    <span class="mx-2">Página {{ $news->currentPage() }}/{{$news->lastPage()}}</span>
+                    <span class="mx-2">
                         @if ($news->hasMorePages())
                             <a href="{{ $news->nextPageUrl() }}" class="hover:text-red-800 underline">→</a>
                         @else

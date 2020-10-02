@@ -14,7 +14,7 @@
             <div class="flex justify-center mb-4">
                 <div class="block w-10/12">
                     <div class="flex justify-center">
-                        <label for="title" class="font-bold text-white">Título de la noticia:</label><br>
+                        <label for="title" class="font-bold text-lg">Título de la noticia:</label><br>
                     </div>
                     <div class="flex justify-center">
                         <input type="text" name="title" class="bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2 w-full"
@@ -28,10 +28,10 @@
             <div class="flex justify-center mb-4">
                 <div class="block">
                     <div class="flex justify-center">
-                        <label for="description" class="font-bold text-white mb-2">Descripción de la noticia:</label><br>
+                        <label for="description" class="font-bold text-lg mb-2">Descripción de la noticia:</label><br>
                     </div>
                     <textarea name="description" rows="4" cols="75"
-                    class="bg-white px-4 py-1 border-2 border-black border-solid rounded" required>{{ old('description',$news->description)}}</textarea>
+                    class="roboto bg-white px-4 py-1 border-2 border-black border-solid rounded" required>{{ old('description',$news->description)}}</textarea>
                     @error('description')
                         <div class="text-red-800 text-center">{{ $message }}</div>
                     @enderror
@@ -40,7 +40,7 @@
             <div class="flex justify-center mb-4 w-full">
                 <div class="block w-full">
                     <div class="flex justify-center">
-                        <label for="article" class="font-bold text-white mb-2">Artículo:</label><br>
+                        <label for="article" class="font-bold text-lg mb-2">Artículo:</label><br>
                     </div>
                     <textarea name="article" class="ckeditor" required>{{ old('article', $news->article)}}</textarea>
                     @error('article')
@@ -51,7 +51,7 @@
             <div class="flex justify-center mb-4">
                 <div class="block">
                     <div class="flex justify-center">
-                        <label for="publication_date" class="font-bold text-white">Fecha a publicar</label><br>
+                        <label for="publication_date" class="font-bold text-lg">Fecha a publicar</label><br>
                     </div>
                     <div class="flex justify-center">
                         <input type="text" name="publication_date" id="publication_date" value="{{ old('publication_date', $news->publication_date) }}"
@@ -66,7 +66,7 @@
             <div class="flex justify-center mb-4">
                 <div class="block">
                     <div class="flex justify-center">
-                        <label for="article" class="font-bold text-white mb-2">Categoría:</label><br>
+                        <label for="article" class="font-bold text-lg mb-2">Categoría:</label><br>
                     </div>
                     <div class="flex justify-center">
                         <select name="category_id" id="" class=" bg-white px-4 py-1 border-2 border-black border-solid rounded font-bold mt-2" required>
@@ -86,7 +86,7 @@
                 <div class="flex justify-center mb-4">
                     <div class="block">
                         <div class="flex justify-center">
-                            <label for="image" class="font-bold text-white">Imagen de Referencia: </label><br>
+                            <label for="image" class="font-bold text-lg">Imagen de Referencia: </label><br>
                         </div>
                         @if (!is_null($news->image))
                             <div class="flex justify-center mb-4">
@@ -100,7 +100,7 @@
                                     <div class="flex justify-center">
                                     <img class="block w-12 text-center" src="{{ asset('img/icons/alert.svg') }}" alt="Alert!">
                                     </div>
-                                    <p class="block text-white text-sm">¡No hay imagen de referencia para la noticia!</p>
+                                    <p class="block text-lg text-sm">¡No hay imagen de referencia para la noticia!</p>
                                 </div>
                             </div>
                             
@@ -118,7 +118,7 @@
                 </div>
             </form>
             <div class="flex justify-center mt-4">
-                <a href="{{ route('admin.news.show', $news->id) }}" class="text-white hover:text-red-800 underline">← Regresar</a>
+                <a href="{{ route('admin.news.show', $news->id) }}" class="font-bold text-blue-800 hover:text-red-800 underline">← Regresar</a>
             </div>
         </div>
     </div>

@@ -9,11 +9,11 @@
             <img src="{{ asset('img/logo/TechNewsLogo.png') }}" alt="Tech News Logo" class="w-full md:w-1/5">
         </div>
         <div class="flex justify-center">
-            <h1 class="text-white font-bold text-3xl">Acerca de Nosotros</h1>
+            <h1 class="font-bold text-3xl">Acerca de Nosotros</h1>
         </div>
         <br>
         <div class="flex justify-center">
-            <h3 class="text-white font-medium text-xl">Redes Sociales</h3>
+            <h3 class="font-medium text-xl">Redes Sociales</h3>
         </div>
         <div class="flex justify-center my-4 mx-4">
             <div class="flex justify-between w-full md:w-1/6">
@@ -31,7 +31,7 @@
         <br>
         <div class="flex justify-center mt-4">
             <a href="{{ url()->previous() }}" 
-                class="text-white hover:text-red-800 underline">← Regresar</a>
+                class="font-bold text-blue-800 hover:text-red-800 underline">← Regresar</a>
         </div>
     </div>
 

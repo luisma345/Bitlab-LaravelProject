@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
-<body class="bg-black">
+<body class="bg-white">
     @include('partials.navbar.navbar',['menu'=>'dashboard'])
     
     
@@ -24,31 +24,31 @@
         <div class="flex fixed justify-center w-full pt-4">
             <div class="flex items-start mt-4 h-screen">
                 <div class="block w-full">
-                    <h1 class="text-2xl text-white text-center">Dashboard</h1>
-                    <div class="bg-gray-800 rounded p-4 mt-2">
-                        <span class="text-2xl text-white text-center">Gestionar:</span>
+                    <h1 class="text-2xl font-bold text-center">Dashboard</h1>
+                    <div class="rounded-lg border-blue-800 border-2 p-4 mt-2">
+                        <span class="text-2xl font-bold text-center">Gestionar:</span>
                         <a href="{{ route('admin.news.index') }}"
                         @if ( $option =='news')
-                            class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
+                            class='block mt-2 px-2 rounded text-white bg-red-800 border-red-800 border-2 rounded text-center'>
                         @else
-                            class='block mt-2 px-2 font-semibold rounded text-black bg-gray-200 
+                            class='block mt-2 px-2 font-semibold border-red-800 border-2 rounded text-black 
                             rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>
                         @endif
                         Noticias</a>
                             <a href="{{ route('admin.categories.index') }}"
                         @if ( $option =='category')
-                            class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
+                            class='block mt-2 px-2 rounded text-white bg-red-800 border-red-800 border-2 rounded text-center'>
                         @else
-                            class='block mt-2 px-2 font-semibold rounded text-black bg-gray-200 
+                            class='block mt-2 px-2 font-semibold border-red-800 border-2 rounded text-black 
                             rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>
                         @endif
                             Categorías</a>
                         
                         <a href="{{ route('admin.users.index') }}"
                         @if ( $option =='user')
-                            class='block mt-2 px-2 rounded text-white bg-red-800 rounded text-center'>
+                            class='block mt-2 px-2 rounded text-white bg-red-800 border-red-800 border-2 rounded text-center'>
                         @else
-                            class='block mt-2 px-2 font-semibold rounded text-black bg-gray-200 
+                            class='block mt-2 px-2 font-semibold rounded border-red-800 border-2 text-black 
                             rounded hover:bg-red-800 hover:text-white hover:font-normal text-center'>
                         @endif
                             Usuarios</a>

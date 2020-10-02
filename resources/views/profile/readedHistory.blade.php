@@ -4,7 +4,7 @@
 
 @section('content')
             <div class="flex justify-center my-4 w-full">
-                <h2 class="font-bold text-white text-2xl mr-2">Historial</h2>
+                <h2 class="font-bold text-2xl mr-2">Historial</h2>
             </div>
             @if (count($readed) == 0)
                 <div class="flex justify-center mt-8">
@@ -12,7 +12,7 @@
                         <div class="flex justify-center">
                             <img class="block w-12 text-center" src="{{ asset('img/icons/alert.svg')}}" alt="Alert!">
                         </div>
-                        <p class="block text-white text-xl">¡No has leido ninguna noticia!</p>
+                        <p class="block font-bold text-xl">¡No has leido ninguna noticia!</p>
                     </div>
                 </div>
             @else
@@ -21,7 +21,7 @@
             <div class="md:flex md:justify-center my-2">
                 <div class="w-full md:w-2/3">
                     <a href="{{ route('news.show', $item->news->slug) }}" 
-                        class="flex items-center bg-white p-2 w-full h-full rounded 
+                        class="flex items-center bg-white p-2 w-full h-full rounded-lg border-blue-800 border-2 
                                 hover:bg-blue-800 hover:text-white">
                         <div class="block w-1/3">
                             <div class="flex justify-center pr-2 w-full">
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="block w-2/3">
-                            <h2 class="font-bold">{{ \Illuminate\Support\Str::limit($item->news->title, 40)}} </h2>
+                            <h2 class="font-bold text-xl">{{ \Illuminate\Support\Str::limit($item->news->title, 40)}} </h2>
                             <div class="md:h-20">
                                 <p class="mb-2">
                                     Descripción: {{ \Illuminate\Support\Str::limit($item->news->description, 140) }}
@@ -76,17 +76,17 @@
             @endforeach
             <div class="flex justify-center my-8">
                 <div class="block">
-                    <div class="flex mt-1">
+                    <div class="flex mt-1 font-bold text-lg">
                         @if ($readed->hasPages())
-                            <span class="text-white mx-2">
+                            <span class="mx-2">
                                 @if (!$readed->onFirstPage())
                                     <a href="{{ $readed->previousPageUrl() }}" class="hover:text-red-800 underline" >←</a>
                                 @else
                                     ←
                                 @endif
                             </span>
-                            <span class="text-white mx-2">Página {{ $readed->currentPage() }}/{{$readed->lastPage()}}</span>
-                            <span class="text-white mx-2">
+                            <span class=" mx-2">Página {{ $readed->currentPage() }}/{{$readed->lastPage()}}</span>
+                            <span class=" mx-2">
                                 @if ($readed->hasMorePages())
                                     <a href="{{ $readed->nextPageUrl() }}" class="hover:text-red-800 underline">→</a>
                                 @else

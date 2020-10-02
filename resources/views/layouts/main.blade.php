@@ -13,7 +13,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body class="bg-black">
+<body class="bg-white">
     @include('partials.navbar.navbar',['menu'=> $menu])
 
 
